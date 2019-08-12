@@ -6,13 +6,14 @@ namespace Tanks.Tank
 {
     public class TankController
     {
-        public TankController(TankModel tankmodel, TankView tankView)
+        public TankController(TankModel tankModel, TankView tankView)
         {
 
             TankView = GameObject.Instantiate<TankView>(tankView);
-            TankModel = tankmodel;
-            TankView.Speed = tankmodel.Speed;
-            TankView.Health = tankmodel.Health;
+            TankModel = tankModel;
+            TankView.Speed = tankModel.Speed;
+            TankView.Health = tankModel.Health;
+            TankView.Type = tankModel.Type;
         }
 
         public TankView TankView { get; set; }

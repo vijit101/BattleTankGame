@@ -7,9 +7,15 @@ namespace Tanks.Tank
 {
     public class TankService : MonoBehaviour
     {
+        private void Start()
+        {
+            PlayerPrefs.SetFloat("Score", 0);
+        }
 
         public TankView tankview;
         public BulletView bulletview;
+        //public TankScriptableObject[] tankConfigurations;
+        public TankScriptableObjectList tankScriptableObjectList;
         // Use this for initialization
 
         private void Update()
@@ -21,16 +27,19 @@ namespace Tanks.Tank
         private void SpawnTank()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                CreateTank(500, 1000);
+            {        
+                TankModel tankModel = new TankModel(tankScriptableObjectList.tanks[0]);
+                CreateTank(tankModel);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                CreateTank(1000, 500);
+                TankModel tankModel = new TankModel(tankScriptableObjectList.tanks[1]);
+                CreateTank(tankModel);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                CreateTank(700, 700);
+                TankModel tankModel = new TankModel(tankScriptableObjectList.tanks[2]);
+                CreateTank(tankModel);
             }
         }
 
@@ -41,14 +50,13 @@ namespace Tanks.Tank
                 //fire bullet if type A B C 
             }
         }
-        private void CreateTank(int tankspeed, int tankhealth)
+        private void CreateTank(TankModel tankmodel)
         {
-            TankModel tankmodel = new TankModel(tankspeed, tankhealth);
             TankController TController = new TankController(tankmodel, tankview);
         }
         private void CreateBullet(float Bspeed, float Dmg)
         {
-            BulletModel bulletmodel = new BulletModel(Bspeed, Dmg);
+            BulletModel bulletmodel = new BulletModel(BulletType.None,Bspeed, Dmg);
             BulletController BController = new BulletController(bulletmodel, bulletview);
         }
     }

@@ -7,15 +7,17 @@ namespace Tanks.Bullet
     public class BulletController
     {
 
-        public BulletController(BulletModel BMdl, BulletView BView)
+        public BulletController(BulletModel bulletModel, BulletView bulletView)
         {
-            Bullet_View = GameObject.Instantiate<BulletView>(BView);
-            Bullet_Model = BMdl;
-            Bullet_View.BSpeed = BMdl.Speed;
+            BulletView = GameObject.Instantiate<BulletView>(bulletView);
+            BulletModel = bulletModel;
+            BulletView.Speed = bulletModel.Speed;
+            //BulletView.damage = bullet
+            BulletView.bulletType = BulletModel.Type;
         }
 
-        public BulletModel Bullet_Model { get; set; }
-        public BulletView Bullet_View { get; set; }
+        public BulletModel BulletModel { get; set; }
+        public BulletView BulletView { get; set; }
     }
 
 }
