@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Tanks.Bullet;
 using UnityEngine;
 
 namespace Tanks.Tank
@@ -15,6 +16,7 @@ namespace Tanks.Tank
         public float Speed = 1000;
         [HideInInspector]
         public float Health = 0;
+        public bool IsFire = false;
         
         // Use this for initialization
         void Start()
@@ -48,18 +50,6 @@ namespace Tanks.Tank
                 rgbd.AddTorque(Vector3.up * -450);
             }
 
-        }
-        public void FireBullet()
-        {
-            if(Input.GetKeyDown(KeyCode.F))
-            {
-                CreateBullet();
-            }
-        }
-
-        private void CreateBullet()
-        {
-            
         }
     }
 

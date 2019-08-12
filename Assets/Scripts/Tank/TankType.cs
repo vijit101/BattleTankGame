@@ -3,8 +3,8 @@
 public enum TankType
 {
     None,
-    LowHealth,
-    MediumHealth,
-    HeavyHealth
+    LowHealth = 1,
+    MediumHealth = 2,
+    HeavyHealth = 3
 
 }

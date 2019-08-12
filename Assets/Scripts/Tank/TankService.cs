@@ -14,6 +14,7 @@ namespace Tanks.Tank
 
         public TankView tankview;
         public BulletView bulletview;
+        public Object[] TanksSpawned;
         //public TankScriptableObject[] tankConfigurations;
         public TankScriptableObjectList tankScriptableObjectList;
         // Use this for initialization
@@ -21,13 +22,13 @@ namespace Tanks.Tank
         private void Update()
         {
             SpawnTank();
-            FireBullet();
         }
 
         private void SpawnTank()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-            {        
+            {    
+                
                 TankModel tankModel = new TankModel(tankScriptableObjectList.tanks[0]);
                 CreateTank(tankModel);
             }
@@ -43,21 +44,10 @@ namespace Tanks.Tank
             }
         }
 
-        public void FireBullet()
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                //fire bullet if type A B C 
-            }
-        }
         private void CreateTank(TankModel tankmodel)
         {
             TankController TController = new TankController(tankmodel, tankview);
-        }
-        private void CreateBullet(float Bspeed, float Dmg)
-        {
-            BulletModel bulletmodel = new BulletModel(BulletType.None,Bspeed, Dmg);
-            BulletController BController = new BulletController(bulletmodel, bulletview);
+
         }
     }
 

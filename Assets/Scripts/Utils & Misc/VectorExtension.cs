@@ -4,9 +4,9 @@ using UnityEngine;
 
 public static class VectorExtension
 {
-    public static Vector3 SetZVal(this Vector3 vec3,float zval)
+    public static Vector3 SetY(this Vector3 vec3,float yval)
     {
-        return new Vector3(vec3.x, vec3.y, zval);
+        return new Vector3(vec3.x,yval , vec3.z);
     }
 }
 
