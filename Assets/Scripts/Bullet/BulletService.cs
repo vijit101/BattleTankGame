@@ -6,17 +6,23 @@ namespace Tanks.Bullet
 {
     public class BulletService : MonoBehaviour
     {
-        private TankView tankview;
+        public BulletService(TankView tankView)
+        {
+            tankview = tankView;
+        }
+
         private TankType tankType;
 
         public BulletScriptableObjectList bulletScriptableObjectList;
         public BulletView bulletView;
 
+        public TankView tankview { get; private set; }
+
         private void Update()
         {
-            FireBullet();
+            SpawnBullet();
         }
-        private void FireBullet()
+        private void SpawnBullet()
         {
             if(Input.GetKeyDown(KeyCode.F))
             {
@@ -35,7 +41,6 @@ namespace Tanks.Bullet
                     BulletModel bulletModel = new BulletModel(bulletScriptableObjectList.Bullets[1]);
                     BulletController bulletController = new BulletController(bulletModel, bulletView, tankview.transform.position);
                 }
-                tankview.IsFire = false;
             }
         }
         

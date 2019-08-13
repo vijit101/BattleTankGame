@@ -49,7 +49,6 @@ namespace Tanks.Tank
             {
                 rgbd.AddTorque(Vector3.up * -450);
             }
-
         }
     }
 
