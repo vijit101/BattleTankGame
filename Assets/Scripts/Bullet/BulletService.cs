@@ -10,7 +10,10 @@ namespace Tanks.Bullet
         {
             tankview = tankView;
         }
-
+        public void SetTankView(TankView tank)
+        {
+            tankview = tank;
+        }
         private TankType tankType;
 
         public BulletScriptableObjectList bulletScriptableObjectList;

@@ -13,12 +13,10 @@ namespace Tanks.Tank
         }
 
         public TankView tankview;
-        public BulletView bulletview;
-        public Object[] TanksSpawned;
+        public BulletService bulletService;
+        //public Object[] TanksSpawned;
         //public TankScriptableObject[] tankConfigurations;
         public TankScriptableObjectList tankScriptableObjectList;
-        // Use this for initialization
-
         private void Update()
         {
             SpawnTank();
@@ -46,7 +44,7 @@ namespace Tanks.Tank
 
         private void CreateTank(TankModel tankmodel)
         {
-            TankController TController = new TankController(tankmodel, tankview);
+            TankController TController = new TankController(tankmodel, tankview,bulletService);
 
         }
     }

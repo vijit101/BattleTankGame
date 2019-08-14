@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: ListBulletScriptables
+  m_Name: BulletScriptableObjectLists
   m_EditorClassIdentifier: Assembly-CSharp::BulletScriptableObjectList
   Bullets:
   - {fileID: 11400000, guid: b0ac77a55fd5fbd48a6bcd4d40019e80, type: 2}

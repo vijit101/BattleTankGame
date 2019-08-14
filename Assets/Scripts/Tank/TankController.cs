@@ -7,19 +7,21 @@ namespace Tanks.Tank
 {
     public class TankController
     {
-        public TankController(TankModel tankModel, TankView tankView)
+        public TankController(TankModel tankModel, TankView tankView,BulletService bulletService)
         {
+            
             TankView = GameObject.Instantiate<TankView>(tankView);
             TankModel = tankModel;
             TankView.Speed = tankModel.Speed;
             TankView.Health = tankModel.Health;
             TankView.Type = tankModel.Type;
-            BulletService = new BulletService(TankView);
-            
+            BulletService = bulletService;
+            bulletService.SetTankView(TankView);
         }
-        public BulletService BulletService { get; set; }
+        public BulletService BulletService;
         public TankView TankView { get; set; }
         public TankModel TankModel { get; set; }
+
     }
 
 }

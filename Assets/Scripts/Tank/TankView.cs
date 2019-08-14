@@ -16,13 +16,14 @@ namespace Tanks.Tank
         public float Speed = 1000;
         [HideInInspector]
         public float Health = 0;
+        public float TotTank = 0;
         public bool IsFire = false;
         
         // Use this for initialization
         void Start()
         {
             rgbd = GetComponent<Rigidbody>();
-            Debug.Log("Spd " + Speed + "health " + Health +"Type "+Type);
+            Debug.Log("Spd " + Speed + "health " + Health +"Type "+Type + "Count"+TotTank);
         }
 
         // Update is called once per frame
@@ -49,6 +50,7 @@ namespace Tanks.Tank
             {
                 rgbd.AddTorque(Vector3.up * -450);
             }
+
         }
     }
 
