@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Medium
   m_EditorClassIdentifier: 
   bulletType: 2
-  Speed: 330
-  Damage: 330
+  Speed: 150
+  Damage: 150

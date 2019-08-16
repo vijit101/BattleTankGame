@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Fast
   m_EditorClassIdentifier: 
   bulletType: 3
-  Speed: 500
-  Damage: 250
+  Speed: 200
+  Damage: 100

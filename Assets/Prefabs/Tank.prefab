@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 54716169706702838}
   m_Layer: 0
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,6 +396,8 @@ MonoBehaviour:
   Type: 0
   Speed: 1000
   Health: 0
+  TotTank: 0
+  IsFire: 0
 --- !u!65 &65719192959664958
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -7,9 +7,25 @@ namespace Tanks.Tank
 {
     public class TankService : MonoBehaviour
     {
+        private static TankService instance;
+        public TankService Instance { get { return instance; } }
+        private void Awake()
+        {
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(this);
+            }
+
+        }
         private void Start()
         {
             PlayerPrefs.SetFloat("Score", 0);
+            PlayerPrefs.SetInt("Lives", 3);
+            PlayerPrefs.SetInt("Respawn", 0);
         }
 
         public TankView tankview;

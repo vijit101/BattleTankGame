@@ -30,27 +30,52 @@ namespace Tanks.Tank
         void Update()
         {
             TankMove();
+            CheckRespawn();
         }
 
         public void TankMove()
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
+                rgbd.velocity = Vector3.zero;
                 rgbd.AddForce(transform.forward * Speed, ForceMode.Force);
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
+                rgbd.velocity = Vector3.zero;
                 rgbd.AddForce(transform.forward * -Speed, ForceMode.Force);
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
+                rgbd.angularVelocity = Vector3.zero;
                 rgbd.AddTorque(Vector3.up * 450);
             }
             if (Input.GetKeyDown(KeyCode.A))
             {
+                rgbd.angularVelocity = Vector3.zero;
                 rgbd.AddTorque(Vector3.up * -450);
             }
 
+        }
+
+        public void CheckRespawn()
+        {
+            if(PlayerPrefs.GetInt("Respawn") ==1)
+            {
+                gameObject.SetActive(false);
+                RespawnPlayer();         
+            }
+        }
+        public void RespawnPlayer()
+        {
+            rgbd.velocity = Vector3.zero;
+            rgbd.angularVelocity = Vector3.zero;
+            Vector3 RespawnPos = Vector3.zero;
+            RespawnPos = RespawnPos.SetRandomVectorXYZ(-38, 38, 0, 5, -38, 38);
+            RespawnPos = RespawnPos.SetY(-3.74f);
+            gameObject.transform.position = RespawnPos;
+            gameObject.SetActive(true);
+            PlayerPrefs.SetInt("Respawn", 0);
         }
     }
 

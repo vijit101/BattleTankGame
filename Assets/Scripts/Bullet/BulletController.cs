@@ -7,10 +7,10 @@ namespace Tanks.Bullet
     public class BulletController
     {
 
-        public BulletController(BulletModel bulletModel, BulletView bulletView,Vector3 BulletPosition)
+        public BulletController(BulletModel bulletModel, BulletView bulletView,Transform TankViewTransform)
         {
-            BulletPosition.SetY(.15f);
-            BulletView = GameObject.Instantiate<BulletView>(bulletView,BulletPosition,Quaternion.identity);
+            Vector3 Bulletpos = TankViewTransform.position.SetY(.2f);
+            BulletView = GameObject.Instantiate<BulletView>(bulletView, Bulletpos, TankViewTransform.rotation);
             BulletModel = bulletModel;
             BulletView.Speed = bulletModel.Speed;
             //BulletView.damage = bullet
