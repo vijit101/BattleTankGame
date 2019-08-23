@@ -5,22 +5,11 @@ using Tanks.Bullet;
 
 namespace Tanks.Tank
 {
-    public class TankService : MonoBehaviour
+    public class TankService : Singletongeneric<TankService>
     {
-        private static TankService instance;
-        public TankService Instance { get { return instance; } }
-        private void Awake()
-        {
-            if (instance == null)
-            {
-                instance = this;
-            }
-            else
-            {
-                Destroy(this);
-            }
-
-        }
+        //private static TankService instance;
+        //public TankService Instance { get { return instance; } }
+        
         private void Start()
         {
             PlayerPrefs.SetFloat("Score", 0);
