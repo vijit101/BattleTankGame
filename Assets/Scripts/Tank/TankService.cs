@@ -9,7 +9,10 @@ namespace Tanks.Tank
     {
         //private static TankService instance;
         //public TankService Instance { get { return instance; } }
-        
+        protected override void Awake()
+        {
+            base.Awake();
+        }
         private void Start()
         {
             PlayerPrefs.SetFloat("Score", 0);
@@ -50,7 +53,6 @@ namespace Tanks.Tank
         private void CreateTank(TankModel tankmodel)
         {
             TankController TController = new TankController(tankmodel, tankview,bulletService);
-
         }
     }
 

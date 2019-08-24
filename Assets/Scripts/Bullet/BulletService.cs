@@ -1,23 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Tanks.Tank;
 
 namespace Tanks.Bullet
 {
-    public class BulletService : MonoBehaviour
+    public class BulletService : Singletongeneric<BulletService>
     {
-        private static BulletService instance;
-        public BulletService Instance { get { return instance; } }
-        private void Awake()
+        
+        protected override void Awake()
         {
-            if (instance == null)
-            {
-                instance = this;
-            }
-            else
-            {
-                Destroy(this);
-            }
+            base.Awake();
         }
         public BulletService(TankView tankView)
         {
