@@ -32,6 +32,7 @@ namespace Tanks.Tank
         {
             TankMove();
             CheckRespawn();
+            TankFire();
         }
         public void InitializeController(TankController tankController)
         {
@@ -65,7 +66,7 @@ namespace Tanks.Tank
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                
+                tankcontroller.FireBullet();
             }
         }
 

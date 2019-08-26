@@ -16,21 +16,21 @@ namespace Tanks.Bullet
         public BulletView bulletView;
 
         public TankView tankview { get; private set; }
-        public BulletController GetBullet()
+        public BulletController GetBullet(TankType tankType)
         {
-            if (tankview.Type == TankType.LowHealth)
+            if (tankType == TankType.LowHealth)
             {
                 BulletModel bulletModel = new BulletModel(bulletScriptableObjectList.Bullets[0]);
                 BulletController bulletController = new BulletController(bulletModel, bulletView);
                 return bulletController;
             }
-            if (tankview.Type == TankType.MediumHealth)
+            if (tankType == TankType.MediumHealth)
             {
                 BulletModel bulletModel = new BulletModel(bulletScriptableObjectList.Bullets[1]);
                 BulletController bulletController = new BulletController(bulletModel, bulletView);
                 return bulletController;
             }
-            if (tankview.Type == TankType.HeavyHealth)
+            if (tankType == TankType.HeavyHealth)
             {
                 BulletModel bulletModel = new BulletModel(bulletScriptableObjectList.Bullets[2]);
                 BulletController bulletController = new BulletController(bulletModel, bulletView);

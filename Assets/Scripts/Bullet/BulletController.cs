@@ -16,16 +16,17 @@ namespace Tanks.Bullet
             BulletView.Speed = bulletModel.Speed;
             //BulletView.damage = bullet
             BulletView.bulletType = BulletModel.Type;
-            BulletView.transform.position = SpawnPosition;
+            
             BulletView.InitializeController(this);
         }
 
         public BulletModel BulletModel { get; set; }
         public BulletView BulletView { get; set; }
-        public Vector3 SpawnPosition { get; set; }
-        public void SetPosition(Vector3 transformArg)
+        
+        public void SetPosition(Vector3 transformArg,Quaternion rotation)
         {
-            SpawnPosition = transformArg;
+            BulletView.transform.position = transformArg;
+            BulletView.transform.rotation = rotation;
         }
     }
 
