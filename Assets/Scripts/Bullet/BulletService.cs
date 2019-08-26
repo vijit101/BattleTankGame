@@ -4,8 +4,7 @@ using Tanks.Tank;
 namespace Tanks.Bullet
 {
     public class BulletService : Singletongeneric<BulletService>
-    {
-        
+    {       
         protected override void Awake()
         {
             base.Awake();
@@ -15,7 +14,6 @@ namespace Tanks.Bullet
         public BulletScriptableObjectList bulletScriptableObjectList;
         public BulletView bulletView;
 
-        public TankView tankview { get; private set; }
         public BulletController GetBullet(TankType tankType)
         {
             if (tankType == TankType.LowHealth)

@@ -7,8 +7,13 @@ using UnityEngine;
 namespace Tanks.Tank
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class TankView : MonoBehaviour
+    public class TankView : MonoBehaviour ,IDamagable
     {
+        public void TakeDamage(int Damage)
+        {
+            throw new NotImplementedException();
+        }
+
         [HideInInspector]
         public TankType Type;
         Rigidbody rgbd;
@@ -17,7 +22,6 @@ namespace Tanks.Tank
         [HideInInspector]
         public float Health = 0;
         public float TotTank = 0;
-        public bool IsFire = false;
         private TankController tankcontroller;
 
         // Use this for initialization
@@ -89,6 +93,8 @@ namespace Tanks.Tank
             gameObject.SetActive(true);
             PlayerPrefs.SetInt("Respawn", 0);
         }
+
+        
     }
 
 }
