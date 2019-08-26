@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Tanks.Tank;
 using UnityEngine;
 
 namespace Tanks.Bullet
@@ -7,19 +8,27 @@ namespace Tanks.Bullet
     public class BulletController
     {
 
-        public BulletController(BulletModel bulletModel, BulletView bulletView,Transform TankViewTransform)
+        public BulletController(BulletModel bulletModel, BulletView bulletView)
         {
-            Vector3 Bulletpos = TankViewTransform.position.SetY(.2f);
-            BulletView = GameObject.Instantiate<BulletView>(bulletView, Bulletpos, TankViewTransform.rotation);
+            //Vector3 Bulletpos = TankViewTransform.position.SetY(.2f);
+            BulletView = GameObject.Instantiate<BulletView>(bulletView);
             BulletModel = bulletModel;
             BulletView.Speed = bulletModel.Speed;
             //BulletView.damage = bullet
             BulletView.bulletType = BulletModel.Type;
+            BulletView.transform.position = SpawnPosition;
+            BulletView.InitializeController(this);
         }
 
         public BulletModel BulletModel { get; set; }
         public BulletView BulletView { get; set; }
+        public Vector3 SpawnPosition { get; set; }
+        public void SetPosition(Vector3 transformArg)
+        {
+            SpawnPosition = transformArg;
+        }
     }
+
 
 }
 

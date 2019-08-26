@@ -18,7 +18,8 @@ namespace Tanks.Tank
         public float Health = 0;
         public float TotTank = 0;
         public bool IsFire = false;
-        
+        private TankController tankcontroller;
+
         // Use this for initialization
         void Start()
         {
@@ -32,7 +33,10 @@ namespace Tanks.Tank
             TankMove();
             CheckRespawn();
         }
-
+        public void InitializeController(TankController tankController)
+        {
+            this.tankcontroller = tankController;
+        }
         public void TankMove()
         {
             if (Input.GetKeyDown(KeyCode.W))
@@ -56,6 +60,13 @@ namespace Tanks.Tank
                 rgbd.AddTorque(Vector3.up * -450);
             }
 
+        }
+        public void TankFire()
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                
+            }
         }
 
         public void CheckRespawn()

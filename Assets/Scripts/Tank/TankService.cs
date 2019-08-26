@@ -21,7 +21,8 @@ namespace Tanks.Tank
         }
 
         public TankView tankview;
-        public BulletService bulletService;
+        public TankType TankTypeSpawned;
+        //public BulletService bulletService;
         //public Object[] TanksSpawned;
         //public TankScriptableObject[] tankConfigurations;
         public TankScriptableObjectList tankScriptableObjectList;
@@ -37,22 +38,25 @@ namespace Tanks.Tank
                 
                 TankModel tankModel = new TankModel(tankScriptableObjectList.tanks[0]);
                 CreateTank(tankModel);
+                TankTypeSpawned = tankModel.Type;
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 TankModel tankModel = new TankModel(tankScriptableObjectList.tanks[1]);
                 CreateTank(tankModel);
+                TankTypeSpawned = tankModel.Type;
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 TankModel tankModel = new TankModel(tankScriptableObjectList.tanks[2]);
                 CreateTank(tankModel);
+                TankTypeSpawned = tankModel.Type;
             }
         }
 
         private void CreateTank(TankModel tankmodel)
         {
-            TankController TController = new TankController(tankmodel, tankview,bulletService);
+            TankController TController = new TankController(tankmodel, tankview);
         }
     }
 

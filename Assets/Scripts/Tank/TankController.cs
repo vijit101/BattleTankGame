@@ -7,7 +7,7 @@ namespace Tanks.Tank
 {
     public class TankController
     {
-        public TankController(TankModel tankModel, TankView tankView,BulletService bulletService)
+        public TankController(TankModel tankModel, TankView tankView)
         {
             
             TankView = GameObject.Instantiate<TankView>(tankView);
@@ -15,10 +15,16 @@ namespace Tanks.Tank
             TankView.Speed = tankModel.Speed;
             TankView.Health = tankModel.Health;
             TankView.Type = tankModel.Type;
-            BulletService = bulletService;
-            bulletService.SetTankView(TankView);
+            TankView.InitializeController(this);
+
+            BulletController bulletController = BulletService.Instance.GetBullet();
+            Vector3 Bulletpos = TankView.transform.position;
+            Bulletpos = Bulletpos.SetY(.2f);
+            bulletController.SetPosition(Bulletpos);
+            //BulletService = bulletService;
+            //bulletService.SetTankView(TankView);
         }
-        public BulletService BulletService;
+        //public BulletService BulletService;
         public TankView TankView { get; set; }
         public TankModel TankModel { get; set; }
 

@@ -19,11 +19,16 @@ namespace Tanks.Bullet
         }
         public BulletType bulletType;
         public float Speed = 50;
+        private BulletController bulletcontroller;
 
         void Update()
         {
             transform.Translate(transform.forward *Speed * Time.deltaTime);
             Destroy(gameObject, .6f);
+        }
+        public void InitializeController(BulletController bulletController)
+        {
+            this.bulletcontroller = bulletController;
         }
     }
 
