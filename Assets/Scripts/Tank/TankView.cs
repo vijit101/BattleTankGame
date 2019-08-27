@@ -11,7 +11,7 @@ namespace Tanks.Tank
     {
         public void TakeDamage(int Damage)
         {
-            throw new NotImplementedException();
+            tankcontroller.ApplyDamage(Damage);
         }
 
         [HideInInspector]

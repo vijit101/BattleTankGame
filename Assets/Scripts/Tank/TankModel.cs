@@ -21,7 +21,7 @@ namespace Tanks.Tank
         }
 
         public float Speed { get; private set; }
-        public float Health { get; private set; }
+        public float Health { get; set; }
         public TankType Type { get; private set; }
     }
 }

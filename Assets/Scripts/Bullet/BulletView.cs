@@ -8,12 +8,18 @@ namespace Tanks.Bullet
     {
         private void OnTriggerEnter(Collider collision)
         {
-            if (collision.gameObject.tag == "Enemy")
+            /*if (collision.gameObject.tag == "Enemy")
             {
                 float score = PlayerPrefs.GetFloat("Score");
                 score++;
                 PlayerPrefs.SetFloat("Score", score);
                 Destroy(gameObject);
+            }*/            
+            if (collision.GetComponent<IDamagable>() != null)
+            {
+                //collision.gameObject.TakeDamage();
+                IDamagable damagable = collision.GetComponent<IDamagable>();
+                damagable.TakeDamage((int)bulletcontroller.BulletModel.Damage);
             }
 
         }
