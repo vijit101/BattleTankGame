@@ -72,6 +72,9 @@
     <Compile Include="Assets\Scripts\Interfaces\IDamagable.cs" />
     <Compile Include="Assets\Scripts\SciptableObjects\BulletScriptableScripts\BulletScriptableObject.cs" />
     <Compile Include="Assets\Scripts\SciptableObjects\TankScriptableScripts\TankScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\States\ChasingState.cs" />
+    <Compile Include="Assets\Scripts\States\PatrollingState.cs" />
+    <Compile Include="Assets\Scripts\States\TankState.cs" />
     <Compile Include="Assets\Scripts\Tank\TankController.cs" />
     <Compile Include="Assets\Scripts\Tank\TankModel.cs" />
     <Compile Include="Assets\Scripts\Tank\TankService.cs" />

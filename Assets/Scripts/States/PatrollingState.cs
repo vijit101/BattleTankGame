@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagable 
+public class PatrollingState : TankState
 {
-    void TakeDamage(float Damage);
+    
 }

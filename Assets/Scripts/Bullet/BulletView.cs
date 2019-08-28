@@ -19,7 +19,7 @@ namespace Tanks.Bullet
             {
                 //collision.gameObject.TakeDamage();
                 IDamagable damagable = collision.GetComponent<IDamagable>();
-                damagable.TakeDamage((int)bulletcontroller.BulletModel.Damage);
+                damagable.TakeDamage(bulletcontroller.BulletModel.Damage);
             }
 
         }

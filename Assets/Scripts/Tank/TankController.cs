@@ -32,7 +32,7 @@ namespace Tanks.Tank
             Bulletpos = Bulletpos.SetY(.2f);
             bulletController.SetPosition(Bulletpos,TankView.transform.rotation);
         }
-        public void ApplyDamage(int damage)
+        public void ApplyDamage(float damage)
         {
             if (TankModel.Health - damage <= 0)
             {
@@ -42,6 +42,11 @@ namespace Tanks.Tank
             {
                 TankModel.Health = TankModel.Health-damage;
             }
+        }
+        public void SetModelToView(TankView tank)
+        {
+            tank.Speed = TankModel.Speed;
+            tank.Health = TankModel.Health;
         }
 
     }

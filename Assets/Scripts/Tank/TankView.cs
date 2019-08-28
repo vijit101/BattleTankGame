@@ -9,9 +9,10 @@ namespace Tanks.Tank
     [RequireComponent(typeof(Rigidbody))]
     public class TankView : MonoBehaviour ,IDamagable
     {
-        public void TakeDamage(int Damage)
+        public void TakeDamage(float Damage)
         {
             tankcontroller.ApplyDamage(Damage);
+            tankcontroller.SetModelToView(this);
         }
 
         [HideInInspector]
