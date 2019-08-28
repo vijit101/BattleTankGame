@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    
+    TankState currentState = null;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Bullet")
@@ -27,6 +27,19 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
         
+    }
+
+    public void ChangeState(TankState newState)
+    {
+        if(currentState != null)
+        {
+            currentState.OnExitState();
+        }
+        else
+        {
+            currentState = newState;
+            currentState.OnEnterState();
+        }
     }
 }
 
