@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour
+public class EnemyBehaviour : MonoBehaviour,IDamagable
 {
-    TankState currentState = null;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bullet")
-        {
-            Destroy(gameObject);
-        }
-        if(other.gameObject.tag == "Player")
+        //if (other.gameObject.tag == "Bullet")
+        //{
+        //    Destroy(gameObject);
+        //}
+        // Can add if idamagable for player too and remove tag logic
+        // ifplayer touch or in trigger with enemy tank -- player health 
+        if (other.gameObject.tag == "Player")
         {
             int lives = PlayerPrefs.GetInt("Lives");
             if (lives < 1)
@@ -26,7 +27,34 @@ public class EnemyBehaviour : MonoBehaviour
                 PlayerPrefs.SetInt("Respawn", 1);
             }
         }
-        
+
+    }
+
+    public void TakeDamage(float Damage)
+    {
+        if (Health - Damage <= 0)
+        {
+            //Enemy Death state
+            Destroy(gameObject);
+        }
+        else
+        {
+            Health = Health - Damage;
+        }
+    }
+
+    TankState currentState = null;
+    float Health = 200,TimeElapsed = 0;
+    public PatrollingState patrollingState;
+    public ChasingState chasingState;
+
+    private void Update()
+    {
+        TimeElapsed = TimeElapsed + Time.deltaTime;
+        if (TimeElapsed > Random.Range(2,4.5f))
+        {
+            ChangeState(patrollingState);
+        }
     }
 
     public void ChangeState(TankState newState)
@@ -41,5 +69,7 @@ public class EnemyBehaviour : MonoBehaviour
             currentState.OnEnterState();
         }
     }
+
+    
 }
 

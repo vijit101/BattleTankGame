@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using Tanks.Tank;
 using UnityEngine;
 
-[RequireComponent(typeof(TankView))]
+[RequireComponent(typeof(EnemyBehaviour))]
 public class TankState : MonoBehaviour
 {
-    protected TankView tankview;
+    protected EnemyBehaviour enemyBehaviour;
     protected virtual void Awake()
     {
-        tankview = GetComponent<TankView>();
+        enemyBehaviour = GetComponent<EnemyBehaviour>();
     }
     
-    public virtual void OnEnterState()
+    protected virtual void OnEnterState()
     {
-
+        this.enabled = true;
     }
-    public virtual void OnExitState()
+    protected virtual void OnExitState()
     {
-
+        this.enabled = false;
     }
-    public virtual void tick()
+    protected virtual void tick()
     {
 
     }
