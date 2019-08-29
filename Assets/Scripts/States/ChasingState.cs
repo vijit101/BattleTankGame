@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChasingState : TankState
 {
-    protected override void Awake()
+    public override void Awake()
     {
         base.Awake();
     }

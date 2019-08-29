@@ -6,17 +6,17 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyBehaviour))]
 public class TankState : MonoBehaviour
 {
-    protected EnemyBehaviour enemyBehaviour;
-    protected virtual void Awake()
+    public EnemyBehaviour enemyBehaviour;
+    public virtual void Awake()
     {
         enemyBehaviour = GetComponent<EnemyBehaviour>();
     }
     
-    protected virtual void OnEnterState()
+    public virtual void OnEnterState()
     {
         this.enabled = true;
     }
-    protected virtual void OnExitState()
+    public  virtual void OnExitState()
     {
         this.enabled = false;
     }

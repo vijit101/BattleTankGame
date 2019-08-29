@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class PatrollingState : TankState
 {
-    protected override void Awake()
+    public override void Awake()
     {
         base.Awake();
 
     }
 
-    protected override void OnEnterState()
+    public override void OnEnterState()
     {
         base.OnEnterState();
         
     }
 
-    protected override void OnExitState()
+    public override void OnExitState()
     {
         base.OnExitState();
     }
