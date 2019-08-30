@@ -33,4 +33,12 @@ public class PatrollingState : TankState
         PatrolPos = PatrolPos.SetRandomVectorXYZ(MyCurrentPos.x + 2, MyCurrentPos.x + 5, MyCurrentPos.y, MyCurrentPos.y + .1f, MyCurrentPos.z + 2, MyCurrentPos.z + 5);
         return PatrolPos;
     }
+    private Vector3 CheckPos(Vector3 position)
+    {
+        if (position.x>=39 && position.x <=-39)
+        {
+            return null;
+        }
+        return null;
+    }
 }
