@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour,IDamagable
 {
+    private void Start()
+    {
+        
+    }
     private void OnTriggerEnter(Collider other)
     {
         //if (other.gameObject.tag == "Bullet")
@@ -51,8 +55,9 @@ public class EnemyBehaviour : MonoBehaviour,IDamagable
     private void Update()
     {
         TimeElapsed = TimeElapsed + Time.deltaTime;
-        if (TimeElapsed > Random.Range(2,4.5f))
+        if (TimeElapsed > Random.Range(2, 4.5f))
         {
+            Debug.LogError("state Change");
             ChangeState(patrollingState);
         }
     }

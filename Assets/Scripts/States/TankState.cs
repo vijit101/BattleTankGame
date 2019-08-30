@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyBehaviour))]
 public class TankState : MonoBehaviour
 {
+    [HideInInspector]
     public EnemyBehaviour enemyBehaviour;
     public virtual void Awake()
     {
