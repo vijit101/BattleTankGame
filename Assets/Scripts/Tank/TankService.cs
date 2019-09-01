@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Tanks.Bullet;
+﻿using UnityEngine;
 
 namespace Tanks.Tank
 {
@@ -33,8 +30,7 @@ namespace Tanks.Tank
         private void SpawnTank()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-            {    
-                
+            {                    
                 TankModel tankModel = new TankModel(tankScriptableObjectList.tanks[0]);
                 CreateTank(tankModel);
             }

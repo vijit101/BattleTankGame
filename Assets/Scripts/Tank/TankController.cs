@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Tanks.Bullet;
+﻿using Tanks.Bullet;
 using UnityEngine;
 
 namespace Tanks.Tank
@@ -15,9 +13,7 @@ namespace Tanks.Tank
             TankView.Speed = tankModel.Speed;
             TankView.Health = tankModel.Health;
             TankView.Type = tankModel.Type;
-            TankView.InitializeController(this);
-
-            
+            TankView.InitializeController(this);            
             //BulletService = bulletService;
             //bulletService.SetTankView(TankView);
         }

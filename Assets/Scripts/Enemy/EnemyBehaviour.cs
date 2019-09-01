@@ -48,7 +48,7 @@ public class EnemyBehaviour : MonoBehaviour,IDamagable
     }
 
     TankState currentState = null;
-    float Health = 200,TimeElapsed = 0;
+    float Health = 300,TimeElapsed = 0;
     public PatrollingState patrollingState;
     public ChasingState chasingState;
 

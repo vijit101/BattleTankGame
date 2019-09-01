@@ -11,7 +11,6 @@ namespace Tanks.Tank
             Speed = tankscriptableobject.Speed;
             Health = tankscriptableobject.Health;
             Type = tankscriptableobject.tankType;
-
         }
         public TankModel(TankType type,int speed, int health)
         {

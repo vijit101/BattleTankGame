@@ -16,7 +16,7 @@ namespace Tanks.Tank
         }
 
         [HideInInspector]
-        public TankType Type;
+        public TankType Type; // can be private use setmodeltoview meth. to pass info.
         Rigidbody rgbd;
         [HideInInspector]
         public float Speed = 1000;
