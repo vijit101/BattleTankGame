@@ -3,26 +3,43 @@
 public class PatrollingState : TankState
 {
     Vector3 moveto;
+    float timeelasped = 0;
+    bool enterState = false;
     private void Update()
     {
-        Debug.Log("here in patrolling State"+moveto);
-        CheckEnemyBounds();
-        enemyBehaviour.transform.Translate(moveto * Time.deltaTime);
-        enemyBehaviour.transform.position = enemyBehaviour.transform.position.SetY(-3.68f);
+        if (enterState)
+        {
+            Debug.Log("Working");
+            CheckEnemyBounds();
+            enemyBehaviour.transform.Translate(moveto * Time.deltaTime);
+            enemyBehaviour.transform.position = enemyBehaviour.transform.position.SetY(-3.68f);
+            timeelasped = timeelasped + Time.deltaTime;
+            if (timeelasped > 2)
+            {
+                Debug.LogError(timeelasped);
+                enemyBehaviour.ChangeState(enemyBehaviour.chasingState);
+            }
+        }
+        //Debug.Log("here in patrolling State"+moveto);
+        
     }
     public override void Awake()
     {
         base.Awake();
         PatrollingPos();
+        
     }
   
     public override void OnEnterState()
     {
         base.OnEnterState();
+        enterState = true;
     }
 
     public override void OnExitState()
     {
+        StopPatroll();
+        //enterState = false;
         base.OnExitState();
     }
     public void PatrollingPos()
@@ -92,6 +109,6 @@ public class PatrollingState : TankState
     private void StopPatroll()
     {
         Vector3 MyCurrentPos = enemyBehaviour.transform.position;
-
+        enemyBehaviour.transform.position = MyCurrentPos;
     }
 }

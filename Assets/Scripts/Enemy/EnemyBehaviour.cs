@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour,IDamagable
 {
-    private void Start()
-    {
-        
-    }
+
+    float score;
     private void OnTriggerEnter(Collider other)
     {
         //if (other.gameObject.tag == "Bullet")
@@ -38,6 +34,9 @@ public class EnemyBehaviour : MonoBehaviour,IDamagable
     {
         if (Health - Damage <= 0)
         {
+            score = PlayerPrefs.GetFloat("Score");
+            score++;
+            PlayerPrefs.SetFloat("Score",score);
             //Enemy Death state
             Destroy(gameObject);
         }
@@ -48,7 +47,7 @@ public class EnemyBehaviour : MonoBehaviour,IDamagable
     }
 
     TankState currentState = null;
-    float Health = 300,TimeElapsed = 0;
+    float Health = 400,TimeElapsed = 0;
     public PatrollingState patrollingState;
     public ChasingState chasingState;
 

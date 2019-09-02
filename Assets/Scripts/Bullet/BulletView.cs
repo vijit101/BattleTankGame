@@ -20,6 +20,7 @@ namespace Tanks.Bullet
                 //collision.gameObject.TakeDamage();
                 IDamagable damagable = collision.GetComponent<IDamagable>();
                 damagable.TakeDamage(bulletcontroller.BulletModel.Damage);
+                //Destroy(gameObject);
                 // Add score logic
             }
 
