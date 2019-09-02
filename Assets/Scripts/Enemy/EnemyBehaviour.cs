@@ -47,18 +47,24 @@ public class EnemyBehaviour : MonoBehaviour,IDamagable
     }
 
     TankState currentState = null;
-    float Health = 400,TimeElapsed = 0;
+    float Health = 400, TimeElapsed = 0;
+    public float speed = 20;
     public PatrollingState patrollingState;
     public ChasingState chasingState;
 
     private void Update()
     {
-        TimeElapsed = TimeElapsed + Time.deltaTime;
-        if (TimeElapsed > Random.Range(2, 4.5f))
+        if(currentState == null)
         {
-            Debug.LogError("state Change");
-            ChangeState(patrollingState);
+            TimeElapsed = TimeElapsed + Time.deltaTime;
+            if (TimeElapsed > Random.Range(2, 4.5f))
+            {
+                Debug.LogError("state Change");
+                ChangeState(patrollingState);
+            }
+
         }
+        
     }
 
     public void ChangeState(TankState newState)
