@@ -7,7 +7,7 @@ public class PatrollingState : TankState
     bool enterState = false,checkbound = false;
     private void Update()
     {
-        print(enterState);
+        //print(enterState);
         if(enterState)
         {
             MovePatroll();
@@ -43,15 +43,15 @@ public class PatrollingState : TankState
     {
         Vector3 MyCurrentPos = enemyBehaviour.transform.position;
         Vector3 PatrollPos = Vector3.zero;
-        PatrollPos = PatrollPos.SetRandomVectorXYZ(-15, 15, 0, 10, -15, 15);
+        PatrollPos = PatrollPos.SetRandomVectorXYZ(-30, 30, 0, 10, -30, 30);
         return PatrollPos;
     }
     private void MovePatroll()
     {
         
-        if (timeelasped<3)
+        if (timeelasped<0)
         {            
-            timeelasped = 6;
+            timeelasped = 3;
             if (checkbound)
             {
                 PatrollingPos();
@@ -59,8 +59,9 @@ public class PatrollingState : TankState
             
         }
         else
-        {          
-            enemyBehaviour.transform.Translate(moveto * Time.deltaTime);
+        {
+            Debug.LogError(moveto);
+            enemyBehaviour.transform.position = Vector3.MoveTowards(enemyBehaviour.transform.position,moveto,enemyBehaviour.speed*Time.deltaTime);
             enemyBehaviour.transform.position = enemyBehaviour.transform.position.SetY(-3.68f);
             timeelasped = timeelasped-Time.deltaTime;
             CheckEnemyBounds();
