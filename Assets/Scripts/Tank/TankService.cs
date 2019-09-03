@@ -22,6 +22,8 @@ namespace Tanks.Tank
         //public Object[] TanksSpawned;
         //public TankScriptableObject[] tankConfigurations;
         public TankScriptableObjectList tankScriptableObjectList;
+        [HideInInspector]
+        public TankController tank = null;
         private void Update()
         {
             SpawnTank();
@@ -49,6 +51,7 @@ namespace Tanks.Tank
         private void CreateTank(TankModel tankmodel)
         {
             TankController TController = new TankController(tankmodel, tankview);
+            tank = TController;
         }
     }
 

@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using Tanks.Tank;
+using UnityEngine;
 
 public class PatrollingState : TankState
 {
     Vector3 moveto;
     float timeelasped = 3;
-    bool enterState = false,checkbound = false;
+    bool enterState = false;
+    Transform target = TankService.Instance.tank.TankView.transform;
     private void Update()
     {
         //print(enterState);
@@ -12,12 +14,15 @@ public class PatrollingState : TankState
         {
             MovePatroll();
         }
-        
+        if(Vector3.Distance(enemyBehaviour.transform.position,target.position) < 2.5f)
+        {
+            enemyBehaviour.ChangeState(enemyBehaviour.chasingState);
+        }
     }
     public override void Awake()
     {
         base.Awake();
-        
+        print("Test"+target.position);
         
     }
   
@@ -52,10 +57,8 @@ public class PatrollingState : TankState
         if (timeelasped<0)
         {            
             timeelasped = 3;
-            if (checkbound)
-            {
-                PatrollingPos();
-            }
+            PatrollingPos();
+            
             
         }
         else
@@ -64,42 +67,14 @@ public class PatrollingState : TankState
             enemyBehaviour.transform.position = Vector3.MoveTowards(enemyBehaviour.transform.position,moveto,enemyBehaviour.speed*Time.deltaTime);
             enemyBehaviour.transform.position = enemyBehaviour.transform.position.SetY(-3.68f);
             timeelasped = timeelasped-Time.deltaTime;
-            CheckEnemyBounds();
+            
         }
        
     }
-
-    private void CheckEnemyBounds()
-    {
-        if (enemyBehaviour.transform.position.x >= 30)
-        {
-            moveto = enemyBehaviour.transform.position + new Vector3(Random.Range(-15, -10), enemyBehaviour.transform.position.y, enemyBehaviour.transform.position.z);
-            checkbound = false;
-        }
-        if (enemyBehaviour.transform.position.z >= 30)
-        {
-            checkbound = false;
-            moveto = enemyBehaviour.transform.position+ new Vector3(enemyBehaviour.transform.position.x, enemyBehaviour.transform.position.y, Random.Range(-15, -10));
-        }
-        if (enemyBehaviour.transform.position.z <= -30)
-        {
-            moveto = enemyBehaviour.transform.position  + new Vector3(enemyBehaviour.transform.position.x, enemyBehaviour.transform.position.y, Random.Range(10, 15));
-            checkbound = false;
-        }
-        if (enemyBehaviour.transform.position.x <= -30)
-        {
-            checkbound = false;
-            moveto = enemyBehaviour.transform.position  + new Vector3(Random.Range(10, 15), enemyBehaviour.transform.position.y, enemyBehaviour.transform.position.z);
-        }
-        else
-        {
-            checkbound = true;
-        }
-    }
-
     private void StopPatroll()
     {
         Vector3 MyCurrentPos = enemyBehaviour.transform.position;
         enemyBehaviour.transform.position = MyCurrentPos;
     }
+
 }
