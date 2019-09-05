@@ -5,7 +5,7 @@ public class ChasingState : TankState
 {
     float speed = 10;
     bool Enterstate = false;
-    Transform target = TankService.Instance.tank.TankView.transform;
+    Transform target = GameObject.FindGameObjectWithTag("Player").transform;
     private void Update()
     {
         if (Enterstate)

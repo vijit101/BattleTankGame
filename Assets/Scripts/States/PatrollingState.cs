@@ -6,7 +6,7 @@ public class PatrollingState : TankState
     Vector3 moveto;
     float timeelasped = 3;
     bool enterState = false;
-    Transform target = TankService.Instance.tank.TankView.transform;
+    Transform target = GameObject.FindGameObjectWithTag("Player").transform;
     private void Update()
     {
         //print(enterState);
