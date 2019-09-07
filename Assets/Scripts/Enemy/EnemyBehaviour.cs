@@ -59,7 +59,7 @@ public class EnemyBehaviour : MonoBehaviour,IDamagable
             TimeElapsed = TimeElapsed + Time.deltaTime;
             if (TimeElapsed > Random.Range(2, 4.5f))
             {
-                Debug.LogError("state Change");
+                //Debug.LogError("state Change");
                 ChangeState(patrollingState);
             }
 
