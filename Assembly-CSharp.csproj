@@ -81,6 +81,8 @@
     <Compile Include="Assets\Scripts\Tank\TankType.cs" />
     <Compile Include="Assets\Scripts\Tank\TankView.cs" />
     <Compile Include="Assets\Scripts\UI\Scoring.cs" />
+    <Compile Include="Assets\Scripts\Utils &amp; Misc\ObjectPooler.cs" />
+    <Compile Include="Assets\Scripts\Utils &amp; Misc\ObjectPoolGeneric.cs" />
     <Compile Include="Assets\Scripts\Utils &amp; Misc\Singletongeneric.cs" />
     <Compile Include="Assets\Scripts\Utils &amp; Misc\VectorExtension.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
@@ -659,6 +661,12 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.6f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{485E0E7B-5D3C-2C92-11B3-DFEAFFC2F460}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ObjectPooler : MonoBehaviour
+public class ObjectPoolGeneric : MonoBehaviour
 {
-
-    private static ObjectPooler instance;
-    public static ObjectPooler Instance { get { return instance; } }
+    //Normal implementation
+    private static ObjectPoolGeneric instance;
+    public static ObjectPoolGeneric Instance { get { return instance; } }
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
     public int amountToPool;
