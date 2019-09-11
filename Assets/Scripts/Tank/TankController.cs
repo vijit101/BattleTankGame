@@ -33,6 +33,8 @@ namespace Tanks.Tank
             if (TankModel.Health - damage <= 0)
             {
                 Debug.Log("Dead State");
+                TankControllerPoolService.Instance.ReturnPooledObject(this);
+                this.TankView.gameObject.SetActive(false);
             }
             else
             {

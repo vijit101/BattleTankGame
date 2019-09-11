@@ -28,11 +28,22 @@ namespace Tanks.Bullet
         public BulletType bulletType;
         public float Speed = 50;
         private BulletController bulletcontroller;
+        float timespan;
 
         void Update()
         {
             transform.Translate(transform.forward *Speed * Time.deltaTime);
-            Destroy(gameObject, .6f);
+            //Destroy(gameObject, .6f);
+            if (timespan > .6)
+            {
+                bulletcontroller.ReturnToPool();
+                this.gameObject.SetActive(false);
+                timespan = 0;
+            }
+            else
+            {
+                timespan += Time.deltaTime;
+            }
         }
         public void InitializeController(BulletController bulletController)
         {

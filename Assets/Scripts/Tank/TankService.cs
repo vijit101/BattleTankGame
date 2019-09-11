@@ -4,26 +4,24 @@ namespace Tanks.Tank
 {
     public class TankService : Singletongeneric<TankService>
     {
-        //private static TankService instance;
-        //public TankService Instance { get { return instance; } }
+        public TankView tankview;
+        public TankScriptableObjectList tankScriptableObjectList;
+        private TankControllerPoolService tankControllerPoolService;
+        [HideInInspector]
+        public TankController tank = null;
+
         protected override void Awake()
         {
             base.Awake();
+            tankControllerPoolService = gameObject.GetComponent<TankControllerPoolService>();
         }
         private void Start()
         {
             PlayerPrefs.SetFloat("Score", 0);
             PlayerPrefs.SetInt("Lives", 3);
-            PlayerPrefs.SetInt("Respawn", 0);
+            PlayerPrefs.SetInt("Respawn", 0);          
         }
-
-        public TankView tankview;
-        //public BulletService bulletService;
-        //public Object[] TanksSpawned;
-        //public TankScriptableObject[] tankConfigurations;
-        public TankScriptableObjectList tankScriptableObjectList;
-        [HideInInspector]
-        public TankController tank = null;
+        
         private void Update()
         {
             SpawnTank();
@@ -50,9 +48,13 @@ namespace Tanks.Tank
 
         private void CreateTank(TankModel tankmodel)
         {
-            TankController TController = new TankController(tankmodel, tankview);
+            //TankController TController = new TankController(tankmodel, tankview);
+            TankController TController = tankControllerPoolService.GetTankController(tankmodel, tankview);
+            TController.TankView.gameObject.SetActive(true);
+            TController.TankView.gameObject.transform.position = Vector3.zero;
+            TController.TankModel = tankmodel;
             tank = TController;
-        }
+        }   
     }
 
 }

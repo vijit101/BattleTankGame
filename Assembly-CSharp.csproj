@@ -70,6 +70,8 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyService.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamagable.cs" />
+    <Compile Include="Assets\Scripts\ObjectPool\BulletControllerPoolService.cs" />
+    <Compile Include="Assets\Scripts\ObjectPool\TankControllerPoolService.cs" />
     <Compile Include="Assets\Scripts\SciptableObjects\BulletScriptableScripts\BulletScriptableObject.cs" />
     <Compile Include="Assets\Scripts\SciptableObjects\TankScriptableScripts\TankScriptableObject.cs" />
     <Compile Include="Assets\Scripts\States\ChasingState.cs" />

@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class ObjectPoolGeneric<T> : Singletongeneric<ObjectPoolGeneric<T>> where T:class
 {
-    private List<PooledItem<T>> PooledItems;
+    private List<PooledItem<T>> PooledItems = new List<PooledItem<T>>();
 
     public virtual T GetPoolItem()
     {
         if(PooledItems.Count > 0)
         {
-            PooledItem<T> poolobj = PooledItems.Find(i => i.m_isUsed == false);// foreach(item i in pooleditem){if(!item.isused)return item.item}
-            poolobj.m_isUsed = true;
-            if(poolobj.m_poolItem != null)
+            PooledItem<T> poolobj = PooledItems.Find(i => i.m_isUsed == false);// foreach(item i in pooleditem){if(!item.isused)return item.item}           
+            if(poolobj != null)
             {
+                poolobj.m_isUsed = true;
                 return poolobj.m_poolItem;
             }
             return CreateNewPoolObjNow();
@@ -34,7 +34,7 @@ public class ObjectPoolGeneric<T> : Singletongeneric<ObjectPoolGeneric<T>> where
     {
         return null;
     }
-    protected virtual void ReturnPooledObject(T ReturnedItem)
+    public virtual void ReturnPooledObject(T ReturnedItem)
     {
         PooledItem<T> returnItem = PooledItems.Find(i => i.m_poolItem == ReturnedItem);//If not working use .equals
         returnItem.m_isUsed = false;

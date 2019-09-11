@@ -28,6 +28,10 @@ namespace Tanks.Bullet
             BulletView.transform.position = transformArg;
             BulletView.transform.rotation = rotation;
         }
+        public void ReturnToPool()
+        {
+            BulletControllerPoolService.Instance.ReturnPooledObject(this);
+        }
     }
 
 
