@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using Tanks.ObjectPool;
+using UnityEngine;
 
 namespace Tanks.Tank
 {
-    public class TankService : Singletongeneric<TankService>
+    public class TankService : MonoSingletongeneric<TankService>
     {
+        public event Action OnTankDeath;
         public TankView tankview;
         public TankScriptableObjectList tankScriptableObjectList;
         private TankControllerPoolService tankControllerPoolService;
@@ -19,12 +22,14 @@ namespace Tanks.Tank
         {
             PlayerPrefs.SetFloat("Score", 0);
             PlayerPrefs.SetInt("Lives", 3);
-            PlayerPrefs.SetInt("Respawn", 0);          
+            PlayerPrefs.SetInt("Respawn", 0);
+            OnTankDeath?.Invoke();
         }
         
         private void Update()
         {
             SpawnTank();
+
         }
 
         private void SpawnTank()

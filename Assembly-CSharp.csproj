@@ -82,10 +82,12 @@
     <Compile Include="Assets\Scripts\Tank\TankService.cs" />
     <Compile Include="Assets\Scripts\Tank\TankType.cs" />
     <Compile Include="Assets\Scripts\Tank\TankView.cs" />
+    <Compile Include="Assets\Scripts\UI\EventService.cs" />
     <Compile Include="Assets\Scripts\UI\Scoring.cs" />
+    <Compile Include="Assets\Scripts\Utils &amp; Misc\MonoSingletongeneric.cs" />
     <Compile Include="Assets\Scripts\Utils &amp; Misc\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\Utils &amp; Misc\ObjectPoolGeneric.cs" />
-    <Compile Include="Assets\Scripts\Utils &amp; Misc\Singletongeneric.cs" />
+    <Compile Include="Assets\Scripts\Utils &amp; Misc\SingletonGeneric.cs" />
     <Compile Include="Assets\Scripts\Utils &amp; Misc\VectorExtension.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

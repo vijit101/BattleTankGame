@@ -7,15 +7,11 @@ using System;
 public class Scoring : MonoBehaviour
 {
     public TextMeshProUGUI Lives, Score,Gameover;
-    public event Action OnDeath;
     // Start is called before the first frame update
     void Start()
     {
         Lives.text = "Lives :"+PlayerPrefs.GetInt("Lives").ToString();
         Score.text = "Score :" + PlayerPrefs.GetFloat("Score").ToString();
-        OnDeath += onPlayerDeath;
-        OnDeath?.Invoke();
-
     }
 
     // Update is called once per frame

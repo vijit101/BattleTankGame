@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Tanks.interfaces;
 using UnityEngine;
 
 namespace Tanks.Bullet

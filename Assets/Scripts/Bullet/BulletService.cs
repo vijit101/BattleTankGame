@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using Tanks.Tank;
+using Tanks.ObjectPool;
 
 namespace Tanks.Bullet
 {
-    public class BulletService : Singletongeneric<BulletService>
+    public class BulletService : MonoSingletongeneric<BulletService>
     {
         private BulletControllerPoolService bulletControllerPoolService;
         private TankType tankType, ViewType;

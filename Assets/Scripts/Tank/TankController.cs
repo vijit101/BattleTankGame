@@ -1,4 +1,5 @@
 ﻿using Tanks.Bullet;
+using Tanks.ObjectPool;
 using UnityEngine;
 
 namespace Tanks.Tank
@@ -32,7 +33,7 @@ namespace Tanks.Tank
         {
             if (TankModel.Health - damage <= 0)
             {
-                Debug.Log("Dead State");
+                EventService.Instance.OnDeath += DeathEvent;
                 TankControllerPoolService.Instance.ReturnPooledObject(this);
                 this.TankView.gameObject.SetActive(false);
             }
@@ -45,6 +46,10 @@ namespace Tanks.Tank
         {
             tank.Speed = TankModel.Speed;
             tank.Health = TankModel.Health;
+        }
+        public void DeathEvent()
+        {
+            Debug.Log("player Dead");
         }
 
     }
