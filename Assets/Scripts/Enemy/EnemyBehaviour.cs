@@ -1,4 +1,5 @@
 ﻿using Tanks.interfaces;
+using Tanks.ObjectPool;
 using Tanks.States;
 using UnityEngine;
 namespace Tanks.Enemy
@@ -15,7 +16,7 @@ namespace Tanks.Enemy
             //}
             // Can add if idamagable for player too and remove tag logic
             // ifplayer touch or in trigger with enemy tank -- player health
-            //EventService.Instance.OnUpdateScore += UpdateScore;
+            //EventService.Instance.OnUpdateScore += UpdateScore;  
 
 
         }
@@ -47,7 +48,9 @@ namespace Tanks.Enemy
                 score++;
                 PlayerPrefs.SetFloat("Score", score);
                 //Enemy Death state
-                Destroy(gameObject);
+                //return the enemy to the pool
+                this.gameObject.SetActive(false);
+                EnemyPoolService.Instance.ReturnPooledObject(this.gameObject);
             }
             else
             {

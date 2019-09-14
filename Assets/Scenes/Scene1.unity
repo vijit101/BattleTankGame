@@ -539,6 +539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 682535697}
   - component: {fileID: 682535699}
+  - component: {fileID: 682535698}
   m_Layer: 0
   m_Name: EnemyService
   m_TagString: Untagged
@@ -560,6 +561,18 @@ Transform:
   m_Father: {fileID: 1459624013}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &682535698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682535696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4251959e35845c1439a83f9725022743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &682535699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,7 +588,6 @@ MonoBehaviour:
   EnemyTankViews:
   - {fileID: 7040842655944549903, guid: 85571e3b68fe2884899b11c74c898a91, type: 3}
   EnemyTankPositions: []
-  InstantiatedEnemyTanks: []
 --- !u!1001 &823166330
 PrefabInstance:
   m_ObjectHideFlags: 0

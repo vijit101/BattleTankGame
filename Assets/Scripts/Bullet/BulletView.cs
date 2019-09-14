@@ -15,7 +15,8 @@ namespace Tanks.Bullet
                 score++;
                 PlayerPrefs.SetFloat("Score", score);
                 Destroy(gameObject);
-            }*/            
+            }*/
+            //damage logic via interface to call damage function on the damagable obj.   
             if (collision.GetComponent<IDamagable>() != null)
             {
                 //collision.gameObject.TakeDamage();
@@ -24,7 +25,6 @@ namespace Tanks.Bullet
                 //Destroy(gameObject);
                 // Add score logic
             }
-
         }
         public BulletType bulletType;
         public float Speed = 50;
@@ -35,6 +35,7 @@ namespace Tanks.Bullet
         {
             transform.Translate(transform.forward *Speed * Time.deltaTime);
             //Destroy(gameObject, .6f);
+            // return bullet to pool logic
             if (timespan > .6)
             {
                 bulletcontroller.ReturnToPool();

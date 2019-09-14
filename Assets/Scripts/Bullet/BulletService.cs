@@ -23,18 +23,21 @@ namespace Tanks.Bullet
             {
                 BulletModel bulletModel = new BulletModel(bulletScriptableObjectList.Bullets[0]);
                 BulletController bulletController = bulletControllerPoolService.GetBulletController(bulletModel, bulletView);
+                bulletController.BulletView.gameObject.SetActive(true);
                 return bulletController;
             }
             if (tankType == TankType.MediumHealth)
             {
                 BulletModel bulletModel = new BulletModel(bulletScriptableObjectList.Bullets[1]);
                 BulletController bulletController = bulletControllerPoolService.GetBulletController(bulletModel, bulletView);
+                bulletController.BulletView.gameObject.SetActive(true);
                 return bulletController;
             }
             if (tankType == TankType.HeavyHealth)
             {
                 BulletModel bulletModel = new BulletModel(bulletScriptableObjectList.Bullets[2]);
                 BulletController bulletController = bulletControllerPoolService.GetBulletController(bulletModel, bulletView);
+                bulletController.BulletView.gameObject.SetActive(true);
                 return bulletController;
             }
             return null;

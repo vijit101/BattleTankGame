@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Tanks.ObjectPool;
 using UnityEngine;
 
 namespace Tanks.Enemy
@@ -7,15 +8,17 @@ namespace Tanks.Enemy
     {
         public List<GameObject> EnemyTankViews;
         public List<Vector3> EnemyTankPositions;
-        public List<GameObject> InstantiatedEnemyTanks;
+        EnemyPoolService enemyPoolService;
+        //public List<GameObject> InstantiatedEnemyTanks;
         // Start is called before the first frame update
 
         protected override void Awake()
         {
             base.Awake();
+            enemyPoolService = GetComponent<EnemyPoolService>();
         }
 
-        // Update is called once per frame
+        // Update is called once per frame  
         void Update()
         {
             CheckInput();
@@ -43,8 +46,12 @@ namespace Tanks.Enemy
             enemySpawnPos = enemySpawnPos.SetRandomVectorXYZ(-39, 39, 0, 10, -39, 39);
             enemySpawnPos = enemySpawnPos.SetY(-3.68f);
             EnemyTankPositions.Add(enemySpawnPos);
-            GameObject enemyTank = Instantiate(EnemyTankViews[Random.Range(0, EnemyTankViews.Count)], enemySpawnPos, Quaternion.identity) as GameObject;
-            InstantiatedEnemyTanks.Add(enemyTank);
+            GameObject enemyTank = enemyPoolService.GetEnemyTank(EnemyTankViews[Random.Range(0, EnemyTankViews.Count)]);
+            enemyTank.transform.position = enemySpawnPos;
+            enemyTank.transform.rotation = Quaternion.identity;
+            enemyTank.SetActive(true);
+            //GameObject enemyTank = Instantiate(EnemyTankViews[Random.Range(0, EnemyTankViews.Count)], enemySpawnPos, Quaternion.identity) as GameObject;
+            //InstantiatedEnemyTanks.Add(enemyTank);
         }
     }
 
