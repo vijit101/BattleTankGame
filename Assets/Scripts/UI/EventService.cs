@@ -7,7 +7,6 @@ public class EventService : MonoSingletongeneric<EventService>
 {
     public event Action OnDeath;
     //public event Action<Collider> OnUpdateScore;
-    // Start is called before the first frame update
     void Start()
     {
         
