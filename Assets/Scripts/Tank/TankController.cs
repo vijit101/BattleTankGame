@@ -33,7 +33,7 @@ namespace Tanks.Tank
         {
             if (TankModel.Health - damage <= 0)
             {
-                EventService.Instance.OnDeath += DeathEvent;
+                //EventService.Instance.OnDeath += DeathEvent;
                 TankControllerPoolService.Instance.ReturnPooledObject(this);
                 this.TankView.gameObject.SetActive(false);
             }
@@ -47,10 +47,10 @@ namespace Tanks.Tank
             tank.Speed = TankModel.Speed;
             tank.Health = TankModel.Health;
         }
-        public void DeathEvent()
-        {
-            Debug.Log("player Dead");
-        }
+        //public void DeathEvent()
+        //{
+        //    Debug.Log("Enemy player Dead");
+        //}
 
     }
 

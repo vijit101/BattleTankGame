@@ -29,6 +29,7 @@ namespace Tanks.Tank
         // Use this for initialization
         void Start()
         {
+            EventService.Instance.EnemyOnDeath += AddTankHealth;
             rgbd = GetComponent<Rigidbody>();
             Debug.Log("Spd " + Speed + "health " + Health +"Type "+Type + "Count"+TotTank);
         }
@@ -95,8 +96,18 @@ namespace Tanks.Tank
             gameObject.SetActive(true);
             PlayerPrefs.SetInt("Respawn", 0);
         }
+        public void AddTankHealth()
+        {
+            //Adds health to tank when it kills an enemy tank so subscribe to enemyondeath event
+            tankcontroller.TankModel.Health += 200;
+            tankcontroller.SetModelToView(this);
+            Debug.LogError("Tank Health After Killing Enemy" + tankcontroller.TankModel.Health);
+        }
 
-        
+        private void OnDisable()
+        {
+            EventService.Instance.EnemyOnDeath -= AddTankHealth;
+        }
     }
 
 }

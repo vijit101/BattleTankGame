@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using Tanks.Tank;
-using Tanks.ObjectPool;
+﻿using Tanks.ObjectPool;
 
 namespace Tanks.Bullet
 {

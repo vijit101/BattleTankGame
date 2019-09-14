@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Tanks.ObjectPool;
-using Tanks.Tank;
+﻿using Tanks.ObjectPool;
 using UnityEngine;
 
 namespace Tanks.Bullet

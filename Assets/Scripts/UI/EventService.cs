@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class EventService : MonoSingletongeneric<EventService>
 {
-    public event Action OnDeath;
-    //public event Action<Collider> OnUpdateScore;
-    void Start()
+    public event Action EnemyOnDeath;
+    public event Action On100EnemyKill;
+    //public event Action OnbulletAchievement;
+    //public event Action BulletHit;
+    public void FireOnDeathEvent()
     {
-        
-        //OnUpdateScore?.Invoke();
-        OnDeath?.Invoke();
+        EnemyOnDeath?.Invoke();
     }
+    public void FireOn100EnemyKill()
+    {
+        On100EnemyKill?.Invoke();
+    }
+    
 }

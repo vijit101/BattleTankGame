@@ -8,6 +8,12 @@ namespace Tanks.Enemy
     {
 
         float score;
+        TankState currentState = null;
+        float Health = 400, TimeElapsed = 0;
+        public float speed = 20;
+        public PatrollingState patrollingState;
+        public ChasingState chasingState;
+
         private void OnTriggerEnter(Collider other)
         {
             //if (other.gameObject.tag == "Bullet")
@@ -19,6 +25,10 @@ namespace Tanks.Enemy
             //EventService.Instance.OnUpdateScore += UpdateScore;  
 
 
+        }
+        private void Start()
+        {
+            EventService.Instance.EnemyOnDeath += ScoreUpdate;
         }
 
         private void UpdateScore(Collider other)
@@ -44,12 +54,10 @@ namespace Tanks.Enemy
         {
             if (Health - Damage <= 0)
             {
-                score = PlayerPrefs.GetFloat("Score");
-                score++;
-                PlayerPrefs.SetFloat("Score", score);
-                //Enemy Death state
-                //return the enemy to the pool
-                this.gameObject.SetActive(false);
+                //ScoreUpdate(); called via event
+                //Enemy Death state  
+                EventService.Instance.FireOnDeathEvent();  //Here I fire the on death event as the enemy is dead
+                this.gameObject.SetActive(false);  //return the enemy to the pool
                 EnemyPoolService.Instance.ReturnPooledObject(this.gameObject);
             }
             else
@@ -57,14 +65,15 @@ namespace Tanks.Enemy
                 Health = Health - Damage;
             }
         }
+        // no need can be done using kill count as high score
+        private void ScoreUpdate()
+        {
+            score = PlayerPrefs.GetFloat("Score");
+            score++;
+            PlayerPrefs.SetFloat("Score", score);
+        }
 
-        TankState currentState = null;
-        float Health = 400, TimeElapsed = 0;
-        public float speed = 20;
-        public PatrollingState patrollingState;
-        public ChasingState chasingState;
-
-        private void Update()
+       private void Update()
         {
             if (currentState == null)
             {
@@ -78,7 +87,7 @@ namespace Tanks.Enemy
             }
 
         }
-
+        //State Code
         public void ChangeState(TankState newState)
         {
             if (currentState != null)
@@ -92,6 +101,10 @@ namespace Tanks.Enemy
             }
         }
 
+        private void OnDisable()
+        {
+            EventService.Instance.EnemyOnDeath -= ScoreUpdate;
+        }
 
     }
 

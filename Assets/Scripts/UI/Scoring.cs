@@ -10,6 +10,8 @@ public class Scoring : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        EventService.Instance.EnemyOnDeath += EnemyKilledCount;
+        PlayerPrefs.SetInt("EnemyKiledCount", 0);
         Lives.text = "Lives :"+PlayerPrefs.GetInt("Lives").ToString();
         Score.text = "Score :" + PlayerPrefs.GetFloat("Score").ToString();
     }
@@ -19,6 +21,7 @@ public class Scoring : MonoBehaviour
     void Update()
     {
         onPlayerDeath();
+        Debug.LogError("Enemy Killed till now"+ PlayerPrefs.GetInt("EnemyKiledCount"));
     }
     private void onPlayerDeath()
     {
@@ -28,5 +31,20 @@ public class Scoring : MonoBehaviour
         {
             Gameover.enabled = true;
         }
+    }
+    private void EnemyKilledCount()
+    {
+        int killed = PlayerPrefs.GetInt("EnemyKiledCount");
+        killed++;
+        PlayerPrefs.SetInt("EnemyKiledCount", killed);
+        if(killed == 100)
+        {
+            //EventService.Instance.FireGenericEvent(EventService.Instance.On100EnemyKill); Won't work
+            EventService.Instance.FireOn100EnemyKill();
+        }
+    }
+    private void OnDisable()
+    {
+        EventService.Instance.EnemyOnDeath -= EnemyKilledCount;
     }
 }
