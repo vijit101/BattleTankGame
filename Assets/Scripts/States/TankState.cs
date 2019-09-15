@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Tanks.Enemy;
-using Tanks.Tank;
+﻿using Tanks.Enemy;
 using UnityEngine;
 
 namespace Tanks.States

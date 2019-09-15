@@ -29,6 +29,7 @@ namespace Tanks.Tank
         // Use this for initialization
         void Start()
         {
+            transform.position = transform.position.SetY(-3.74f);
             EventService.Instance.EnemyOnDeath += AddTankHealth;
             rgbd = GetComponent<Rigidbody>();
             Debug.Log("Spd " + Speed + "health " + Health +"Type "+Type + "Count"+TotTank);
@@ -57,15 +58,16 @@ namespace Tanks.Tank
                 rgbd.velocity = Vector3.zero;
                 rgbd.AddForce(transform.forward * -Speed, ForceMode.Force);
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
             {
                 rgbd.angularVelocity = Vector3.zero;
-                rgbd.AddTorque(Vector3.up * 450);
+                transform.Rotate(new Vector3(0,90,0)*Time.deltaTime);
             }
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKey(KeyCode.A))
             {
                 rgbd.angularVelocity = Vector3.zero;
-                rgbd.AddTorque(Vector3.up * -450);
+                //rgbd.AddTorque(Vector3.up * -45);
+                transform.Rotate(new Vector3(0, -90, 0) * Time.deltaTime);
             }
 
         }

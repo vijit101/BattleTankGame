@@ -56,7 +56,8 @@ namespace Tanks.Tank
             //TankController TController = new TankController(tankmodel, tankview);
             TankController TController = tankControllerPoolService.GetTankController(tankmodel, tankview);
             TController.TankView.gameObject.SetActive(true);
-            TController.TankView.gameObject.transform.position = Vector3.zero;
+            TController.TankView.gameObject.transform.position = new Vector3(0, TController.TankView.gameObject.transform.position.y,0);
+            // For reactivation the health be reset to teh model 
             TController.TankModel = tankmodel;
             tank = TController;
         }   

@@ -8,7 +8,6 @@ namespace Tanks.States
         Vector3 moveto;
         float timeelasped = 3;
         bool enterState = false;
-        Transform target;
         private void Update()
         {
             //print(enterState);
@@ -16,31 +15,17 @@ namespace Tanks.States
             {
                 MovePatroll();
             }
-            if (Vector3.Distance(enemyBehaviour.transform.position, target.position) < 5)
-            {
-                Debug.LogError("Change To Chasing State");
-                enemyBehaviour.ChangeState(enemyBehaviour.chasingState);
-            }
         }
         public override void Awake()
         {
             base.Awake();
-            //print("Test"+target.position);
-
         }
-
-        //private async void Start()
-        //{
-        //    await new WaitForSeconds(1);
-        //}
 
         public override void OnEnterState()
         {
             base.OnEnterState();
             enterState = true;
             moveto = SetPatrolPosition(); // remove this line and al tnks first come to 000 the n go on patrolling
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-            Debug.LogError("Change To Chasing State " + target.position);
         }
 
         public override void OnExitState()
@@ -49,6 +34,7 @@ namespace Tanks.States
             enterState = false;
             base.OnExitState();
         }
+
         public void PatrollingPos()
         {
             moveto = SetPatrolPosition();

@@ -13,18 +13,24 @@ namespace Tanks.Enemy
         public float speed = 20;
         public PatrollingState patrollingState;
         public ChasingState chasingState;
+        public Transform Playertarget;
+        bool changeToChase = false;
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            IDamagable damagableComponent = collision.gameObject.GetComponent<IDamagable>();
+            if (damagableComponent != null)
+            {
+                damagableComponent.TakeDamage(10); // damages eveyone with Idamagable on collision with them
+            }
+        }
         private void OnTriggerEnter(Collider other)
         {
-            //if (other.gameObject.tag == "Bullet")
-            //{
-            //    Destroy(gameObject);
-            //}
-            // Can add if idamagable for player too and remove tag logic
-            // ifplayer touch or in trigger with enemy tank -- player health
-            //EventService.Instance.OnUpdateScore += UpdateScore;  
-
-
+            if(other.tag == "Player")
+            {
+                Playertarget = other.gameObject.transform;
+                changeToChase = true;
+            }    
         }
         private void Start()
         {
@@ -85,6 +91,12 @@ namespace Tanks.Enemy
                 }
 
             }
+            if (changeToChase && currentState != chasingState)
+            {
+
+                ChangeState(chasingState);
+                changeToChase = false;
+            }
 
         }
         //State Code
@@ -93,6 +105,8 @@ namespace Tanks.Enemy
             if (currentState != null)
             {
                 currentState.OnExitState();
+                currentState = newState;
+                currentState.OnEnterState();
             }
             else
             {
