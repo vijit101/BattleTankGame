@@ -585,9 +585,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2331d052d0ef318438ccc1d8112a8e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyTankViews:
-  - {fileID: 7040842655944549903, guid: 85571e3b68fe2884899b11c74c898a91, type: 3}
   EnemyTankPositions: []
+  EnemyTankViews:
+  - {fileID: 7027101548334254081, guid: 85571e3b68fe2884899b11c74c898a91, type: 3}
 --- !u!1001 &823166330
 PrefabInstance:
   m_ObjectHideFlags: 0

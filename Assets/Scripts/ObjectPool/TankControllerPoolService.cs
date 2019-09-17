@@ -14,6 +14,12 @@ namespace Tanks.ObjectPool
         {
             this.tankView = view;
             this.tankModel = model;
+            TankController getTank = GetPoolItem();
+            if(getTank != null)
+            {
+                getTank.ResetController(tankModel);
+                return getTank;
+            }
             return GetPoolItem();
         }
 

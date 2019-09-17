@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public enum TankType
+﻿public enum TankType
 {
     None,
     LowHealth = 1,

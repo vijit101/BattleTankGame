@@ -4,7 +4,7 @@ namespace Tanks.Bullet
 {
     public class BulletService : MonoSingletongeneric<BulletService>
     {
-        private BulletControllerPoolService bulletControllerPoolService;
+        //private BulletControllerPoolService bulletControllerPoolService;
         private TankType tankType, ViewType;
         public BulletScriptableObjectList bulletScriptableObjectList;
         public BulletView bulletView;
@@ -12,7 +12,7 @@ namespace Tanks.Bullet
         protected override void Awake()
         {
             base.Awake();
-            bulletControllerPoolService = GetComponent<BulletControllerPoolService>();
+            //bulletControllerPoolService = GetComponent<BulletControllerPoolService>();
         }
         
         public BulletController GetBullet(TankType tankType)
@@ -20,22 +20,19 @@ namespace Tanks.Bullet
             if (tankType == TankType.LowHealth)
             {
                 BulletModel bulletModel = new BulletModel(bulletScriptableObjectList.Bullets[0]);
-                BulletController bulletController = bulletControllerPoolService.GetBulletController(bulletModel, bulletView);
-                bulletController.BulletView.gameObject.SetActive(true);
+                BulletController bulletController = BulletControllerPoolService.Instance.GetComponent<BulletControllerPoolService>().GetBulletController(bulletModel, bulletView);
                 return bulletController;
             }
             if (tankType == TankType.MediumHealth)
             {
                 BulletModel bulletModel = new BulletModel(bulletScriptableObjectList.Bullets[1]);
-                BulletController bulletController = bulletControllerPoolService.GetBulletController(bulletModel, bulletView);
-                bulletController.BulletView.gameObject.SetActive(true);
+                BulletController bulletController = BulletControllerPoolService.Instance.GetComponent<BulletControllerPoolService>().GetBulletController(bulletModel, bulletView);
                 return bulletController;
             }
             if (tankType == TankType.HeavyHealth)
             {
                 BulletModel bulletModel = new BulletModel(bulletScriptableObjectList.Bullets[2]);
-                BulletController bulletController = bulletControllerPoolService.GetBulletController(bulletModel, bulletView);
-                bulletController.BulletView.gameObject.SetActive(true);
+                BulletController bulletController = BulletControllerPoolService.Instance.GetComponent<BulletControllerPoolService>().GetBulletController(bulletModel, bulletView);
                 return bulletController;
             }
             return null;

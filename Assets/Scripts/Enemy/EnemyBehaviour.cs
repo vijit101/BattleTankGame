@@ -62,9 +62,10 @@ namespace Tanks.Enemy
             {
                 //ScoreUpdate(); called via event
                 //Enemy Death state  
+                //EventService.Instance.EnemyOnDeath.Invoke();
                 EventService.Instance.FireOnDeathEvent();  //Here I fire the on death event as the enemy is dead
                 this.gameObject.SetActive(false);  //return the enemy to the pool
-                EnemyPoolService.Instance.ReturnPooledObject(this.gameObject);
+                EnemyPoolService.Instance.ReturnPooledObject(this);
             }
             else
             {
@@ -119,7 +120,12 @@ namespace Tanks.Enemy
         {
             EventService.Instance.EnemyOnDeath -= ScoreUpdate;
         }
-
+        public void ResetTank(Vector3 spawnPos)
+        {
+            transform.position = spawnPos;
+            transform.rotation = Quaternion.identity;
+            gameObject.SetActive(true);
+        }
     }
 
 }

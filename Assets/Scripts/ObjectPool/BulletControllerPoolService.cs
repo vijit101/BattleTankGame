@@ -14,6 +14,12 @@ namespace Tanks.ObjectPool
         {
             this.bulletModel = model;
             this.bulletView = view;
+            BulletController getBullet = GetPoolItem();
+            if (getBullet != null)
+            {
+                getBullet.BulletView.gameObject.SetActive(true);
+                return getBullet;
+            }
             return GetPoolItem();
         }
 

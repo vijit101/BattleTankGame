@@ -8,8 +8,10 @@ using UnityEngine;
 namespace Tanks.Tank
 {
     [RequireComponent(typeof(Rigidbody))]
+    // Implements Idamagable as it can be damaged by bullets 
     public class TankView : MonoBehaviour ,IDamagable
     {
+        // Implemented interface function 
         public void TakeDamage(float Damage)
         {
             tankcontroller.ApplyDamage(Damage);
@@ -17,8 +19,8 @@ namespace Tanks.Tank
         }
 
         [HideInInspector]
-        public TankType Type; // can be private use setmodeltoview meth. to pass info.
-        Rigidbody rgbd;
+        public TankType Type; // holds an enum as a type
+        Rigidbody rgbd; 
         [HideInInspector]
         public float Speed = 1000;
         [HideInInspector]
@@ -30,7 +32,7 @@ namespace Tanks.Tank
         void Start()
         {
             transform.position = transform.position.SetY(-3.74f);
-            EventService.Instance.EnemyOnDeath += AddTankHealth;
+            EventService.Instance.EnemyOnDeath += AddTankHealth; // Sub to event when enemy dies it gets health
             rgbd = GetComponent<Rigidbody>();
             Debug.Log("Spd " + Speed + "health " + Health +"Type "+Type + "Count"+TotTank);
         }
