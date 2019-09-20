@@ -392,7 +392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366943119}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 6.0221863, y: 168.3934, z: -3.8945277}
+  m_LocalPosition: {x: 3.6067107, y: 154.35812, z: -2.3706908}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -427,6 +427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 421852904}
   - component: {fileID: 421852903}
+  - component: {fileID: 421852905}
   m_Layer: 0
   m_Name: BulletService
   m_TagString: Untagged
@@ -464,6 +465,18 @@ Transform:
   m_Father: {fileID: 1459624013}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &421852905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421852902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c0eb0db57fc1c844be889b04fd69541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &520862672
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 682535697}
   - component: {fileID: 682535699}
+  - component: {fileID: 682535698}
   m_Layer: 0
   m_Name: EnemyService
   m_TagString: Untagged
@@ -547,6 +561,18 @@ Transform:
   m_Father: {fileID: 1459624013}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &682535698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682535696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4251959e35845c1439a83f9725022743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &682535699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,10 +585,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2331d052d0ef318438ccc1d8112a8e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyTankViews:
-  - {fileID: 7040842655944549903, guid: 85571e3b68fe2884899b11c74c898a91, type: 3}
   EnemyTankPositions: []
-  InstantiatedEnemyTanks: []
+  EnemyTankViews:
+  - {fileID: 7027101548334254081, guid: 85571e3b68fe2884899b11c74c898a91, type: 3}
 --- !u!1001 &823166330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -838,6 +863,49 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1246528176}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1382266417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1382266418}
+  - component: {fileID: 1382266419}
+  m_Layer: 0
+  m_Name: EventService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1382266418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382266417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1459624013}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1382266419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382266417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6adf6d327e2ee0b498ede1079947ada9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1459624012
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +936,7 @@ Transform:
   - {fileID: 1603596429}
   - {fileID: 421852904}
   - {fileID: 682535697}
+  - {fileID: 1382266418}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1085,6 +1154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1603596429}
   - component: {fileID: 1603596430}
+  - component: {fileID: 1603596431}
   m_Layer: 0
   m_Name: TankService
   m_TagString: Untagged
@@ -1121,6 +1191,18 @@ MonoBehaviour:
   tankview: {fileID: 114284120193553450, guid: e6ce6e5db70c29641af77d1b9ff64875, type: 3}
   tankScriptableObjectList: {fileID: 11400000, guid: 8702319361a7b924faa9523e563021c6,
     type: 2}
+--- !u!114 &1603596431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603596428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c89dac725f27da4f9b34b3308c41629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1645508330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,7 +1663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50912a5d3c9322a46afa5ca162962a5c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.216942
+      value: 15.25
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50912a5d3c9322a46afa5ca162962a5c, type: 3}
       propertyPath: m_LocalRotation.x

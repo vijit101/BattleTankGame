@@ -1,18 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Singletongeneric<T> : MonoBehaviour where T :Singletongeneric<T>
+public class SingletonGeneric<T> where T : MonoSingletongeneric<T>
 {
     private static T instance;
-    public static T Instance{ get { return instance; } }
-    protected virtual void Awake()
+    public static T Instance { get { return instance; } }
+    protected virtual void OnAwake()
     {
-        if(instance ==null)
-        {
-            instance = (T)this;
-        }
-        else
-        {
-            Destroy(this);
-        }
+       //Write your code here
     }
 }

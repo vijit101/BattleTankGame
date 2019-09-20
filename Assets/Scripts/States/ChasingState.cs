@@ -1,37 +1,47 @@
 ﻿using Tanks.Tank;
 using UnityEngine;
 
-public class ChasingState : TankState
+namespace Tanks.States
 {
-    float speed = 10;
-    bool Enterstate = false;
-    Transform target = GameObject.FindGameObjectWithTag("Player").transform;
-    private void Update()
+    public class ChasingState : TankState
     {
-        if (Enterstate)
+        bool Enterstate;       
+        float timelapse = 0;
+        private void Update()
         {
-            enemyBehaviour.transform.position = Vector3.MoveTowards(enemyBehaviour.transform.position, target.position, 10 * Time.deltaTime);                       
-        } 
-        if(Vector3.Distance(enemyBehaviour.transform.position,target.position)>2.5f)
+            if (Enterstate)
+            {
+                enemyBehaviour.transform.position = Vector3.MoveTowards(enemyBehaviour.transform.position, enemyBehaviour.Playertarget.position, (enemyBehaviour.speed-5) * Time.deltaTime);
+                if (timelapse > 3.5f)
+                {
+                    Debug.LogError("Change Back To Patrolling State");
+                    enemyBehaviour.ChangeState(enemyBehaviour.patrollingState);
+                }
+                else
+                {
+                    timelapse += Time.deltaTime;
+                }
+            }
+
+        }
+        public override void Awake()
         {
-            enemyBehaviour.ChangeState(enemyBehaviour.patrollingState);
+            base.Awake();
+            Enterstate = false;
+        }
+        public override void OnEnterState()
+        {
+            base.OnEnterState();
+            Debug.LogError("Enter chase State");
+            Enterstate = true;
+        }
+        public override void OnExitState()
+        {
+            Debug.LogError("Exit chase State");
+            Enterstate = false;
+            base.OnExitState();
         }
     }
-    public override void Awake()
-    {
-        base.Awake();
-    }
-    public override void OnEnterState()
-    {
-        base.OnEnterState();
-        Debug.Log("inside chase");
-        Enterstate = true;       
-    }
-    public override void OnExitState()
-    {
-        enemyBehaviour.transform.rotation = Quaternion.identity;
-        Enterstate = false;
-        base.OnExitState();
-        
-    }
+
 }
+

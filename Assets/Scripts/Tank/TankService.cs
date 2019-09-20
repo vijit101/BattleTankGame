@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using Tanks.ObjectPool;
+using UnityEngine;
 
 namespace Tanks.Tank
 {
-    public class TankService : Singletongeneric<TankService>
+    public class TankService : MonoSingletongeneric<TankService>
     {
-        //private static TankService instance;
-        //public TankService Instance { get { return instance; } }
+        public TankView tankview; // Holds a reference to the view be instantiated
+        public TankScriptableObjectList tankScriptableObjectList; // list of data to be input to model
+
         protected override void Awake()
         {
             base.Awake();
@@ -16,24 +19,18 @@ namespace Tanks.Tank
             PlayerPrefs.SetInt("Lives", 3);
             PlayerPrefs.SetInt("Respawn", 0);
         }
-
-        public TankView tankview;
-        //public BulletService bulletService;
-        //public Object[] TanksSpawned;
-        //public TankScriptableObject[] tankConfigurations;
-        public TankScriptableObjectList tankScriptableObjectList;
-        [HideInInspector]
-        public TankController tank = null;
+        
         private void Update()
         {
-            SpawnTank();
+            SpawnTank(); 
+
         }
 
         private void SpawnTank()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {                    
-                TankModel tankModel = new TankModel(tankScriptableObjectList.tanks[0]);
+                TankModel tankModel = new TankModel(tankScriptableObjectList.tanks[0]); // takes the input of data from scriptable objects
                 CreateTank(tankModel);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -50,9 +47,9 @@ namespace Tanks.Tank
 
         private void CreateTank(TankModel tankmodel)
         {
-            TankController TController = new TankController(tankmodel, tankview);
-            tank = TController;
-        }
+            //Gets the tank controller from pool and if not returns a new object then object is activated
+            TankController TController = TankControllerPoolService.Instance.GetComponent<TankControllerPoolService>().GetTankController(tankmodel, tankview);    
+        }   
     }
 
 }

@@ -1,85 +1,133 @@
-﻿using UnityEngine;
-
-public class EnemyBehaviour : MonoBehaviour,IDamagable
+﻿using Tanks.interfaces;
+using Tanks.ObjectPool;
+using Tanks.States;
+using UnityEngine;
+namespace Tanks.Enemy
 {
-
-    float score;
-    private void OnTriggerEnter(Collider other)
+    public class EnemyBehaviour : MonoBehaviour, IDamagable
     {
-        //if (other.gameObject.tag == "Bullet")
-        //{
-        //    Destroy(gameObject);
-        //}
-        // Can add if idamagable for player too and remove tag logic
-        // ifplayer touch or in trigger with enemy tank -- player health 
-        if (other.gameObject.tag == "Player")
+
+        float score;
+        TankState currentState = null;
+        float Health = 400, TimeElapsed = 0;
+        public float speed = 20;
+        public PatrollingState patrollingState;
+        public ChasingState chasingState;
+        public Transform Playertarget;
+        bool changeToChase = false;
+
+        private void OnCollisionEnter(Collision collision)
         {
-            int lives = PlayerPrefs.GetInt("Lives");
-            if (lives < 1)
+            IDamagable damagableComponent = collision.gameObject.GetComponent<IDamagable>();
+            if (damagableComponent != null)
             {
-                //Game Over
-                Debug.Log("Player Dead");
+                damagableComponent.TakeDamage(10); // damages eveyone with Idamagable on collision with them
+            }
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.tag == "Player")
+            {
+                Playertarget = other.gameObject.transform;
+                changeToChase = true;
+            }    
+        }
+        private void Start()
+        {
+            EventService.Instance.EnemyOnDeath += ScoreUpdate;
+        }
+
+        private void UpdateScore(Collider other)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                int lives = PlayerPrefs.GetInt("Lives");
+                if (lives < 1)
+                {
+                    //Game Over
+                    Debug.Log("Player Dead");
+                }
+                else
+                {
+                    lives--;
+                    PlayerPrefs.SetInt("Lives", lives);
+                    PlayerPrefs.SetInt("Respawn", 1);
+                }
+            }
+        }
+
+        public void TakeDamage(float Damage)
+        {
+            if (Health - Damage <= 0)
+            {
+                //ScoreUpdate(); called via event
+                //Enemy Death state  
+                //EventService.Instance.EnemyOnDeath.Invoke();
+                EventService.Instance.FireOnDeathEvent();  //Here I fire the on death event as the enemy is dead
+                this.gameObject.SetActive(false);  //return the enemy to the pool
+                EnemyPoolService.Instance.ReturnPooledObject(this);
             }
             else
             {
-                lives--;
-                PlayerPrefs.SetInt("Lives", lives);
-                PlayerPrefs.SetInt("Respawn", 1);
+                Health = Health - Damage;
             }
         }
-
-    }
-
-    public void TakeDamage(float Damage)
-    {
-        if (Health - Damage <= 0)
+        // no need can be done using kill count as high score
+        private void ScoreUpdate()
         {
             score = PlayerPrefs.GetFloat("Score");
             score++;
-            PlayerPrefs.SetFloat("Score",score);
-            //Enemy Death state
-            Destroy(gameObject);
+            PlayerPrefs.SetFloat("Score", score);
         }
-        else
-        {
-            Health = Health - Damage;
-        }
-    }
 
-    TankState currentState = null;
-    float Health = 400, TimeElapsed = 0;
-    public float speed = 20;
-    public PatrollingState patrollingState;
-    public ChasingState chasingState;
-
-    private void Update()
-    {
-        if(currentState == null)
+       private void Update()
         {
-            TimeElapsed = TimeElapsed + Time.deltaTime;
-            if (TimeElapsed > Random.Range(2, 4.5f))
+            if (currentState == null)
             {
-                Debug.LogError("state Change");
-                ChangeState(patrollingState);
+                TimeElapsed = TimeElapsed + Time.deltaTime;
+                if (TimeElapsed > Random.Range(2, 4.5f))
+                {
+                    //Debug.LogError("state Change");
+                    ChangeState(patrollingState);
+                }
+
+            }
+            if (changeToChase && currentState != chasingState)
+            {
+
+                ChangeState(chasingState);
+                changeToChase = false;
             }
 
         }
-        
+        //State Code
+        public void ChangeState(TankState newState)
+        {
+            if (currentState != null)
+            {
+                currentState.OnExitState();
+                currentState = newState;
+                currentState.OnEnterState();
+            }
+            else
+            {
+                currentState = newState;
+                currentState.OnEnterState();
+            }
+        }
+
+        private void OnDisable()
+        {
+            EventService.Instance.EnemyOnDeath -= ScoreUpdate;
+        }
+        public void ResetTank(Vector3 spawnPos)
+        {
+            transform.position = spawnPos;
+            transform.rotation = Quaternion.identity;
+            gameObject.SetActive(true);
+        }
     }
 
-    public void ChangeState(TankState newState)
-    {
-        if(currentState != null)
-        {
-            currentState.OnExitState();
-        }
-        else
-        {
-            currentState = newState;
-            currentState.OnEnterState();
-        }
-    }
-
-    
 }
+
 

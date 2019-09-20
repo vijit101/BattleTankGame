@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Tanks.interfaces;
 using UnityEngine;
 
 namespace Tanks.Bullet
@@ -14,7 +15,8 @@ namespace Tanks.Bullet
                 score++;
                 PlayerPrefs.SetFloat("Score", score);
                 Destroy(gameObject);
-            }*/            
+            }*/
+            //damage logic via interface to call damage function on the damagable obj.   
             if (collision.GetComponent<IDamagable>() != null)
             {
                 //collision.gameObject.TakeDamage();
@@ -23,16 +25,27 @@ namespace Tanks.Bullet
                 //Destroy(gameObject);
                 // Add score logic
             }
-
         }
         public BulletType bulletType;
         public float Speed = 50;
         private BulletController bulletcontroller;
+        float timespan;
 
         void Update()
         {
             transform.Translate(transform.forward *Speed * Time.deltaTime);
-            Destroy(gameObject, .6f);
+            //Destroy(gameObject, .6f);
+            // return bullet to pool logic
+            if (timespan > .6)
+            {
+                bulletcontroller.ReturnToPool();
+                this.gameObject.SetActive(false);
+                timespan = 0;
+            }
+            else
+            {
+                timespan += Time.deltaTime;
+            }
         }
         public void InitializeController(BulletController bulletController)
         {

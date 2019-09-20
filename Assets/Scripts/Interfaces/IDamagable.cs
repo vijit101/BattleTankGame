@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagable 
+namespace Tanks.interfaces
 {
-    void TakeDamage(float Damage);
+    public interface IDamagable
+    {
+        void TakeDamage(float Damage);
+    }
 }
+
