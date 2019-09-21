@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Tanks.Tank
+﻿namespace Tanks.Tank
 {
     public class TankModel
     {
@@ -18,6 +14,7 @@ namespace Tanks.Tank
             Health = health;
             Type = type;
         }
+        public TankModel() { }
 
         public float Speed { get; private set; }
         public float Health { get; set; }

@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 7027101548334254081}
   - component: {fileID: 7929791141749570078}
   - component: {fileID: 6374378639944880918}
+  - component: {fileID: 5945717373752982393}
   - component: {fileID: 138700398186874727}
   m_Layer: 0
   m_Name: EnemyTank Variant 1
@@ -398,7 +399,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 3
 --- !u!65 &5644338063897453788
 BoxCollider:
@@ -428,6 +429,7 @@ MonoBehaviour:
   speed: 20
   patrollingState: {fileID: 7929791141749570078}
   chasingState: {fileID: 6374378639944880918}
+  shootingState: {fileID: 5945717373752982393}
   Playertarget: {fileID: 0}
 --- !u!114 &7929791141749570078
 MonoBehaviour:
@@ -452,6 +454,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96f83b86232af46de86853d1b1690885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBehaviour: {fileID: 0}
+--- !u!114 &5945717373752982393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040842655944549903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db0f2ce619acab644b4a12192e79b9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBehaviour: {fileID: 0}

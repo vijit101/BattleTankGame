@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public enum BulletType
+﻿public enum BulletType
 {
     None = 0,
     Slow = 1,

@@ -7,16 +7,24 @@ public class AchievementService : MonoBehaviour
 {
     private void Start()
     {
-        EventService.Instance.On100EnemyKill += EnemyKillAchievement;
+        EventService.Instance.OnEnemyKill += EnemyKillAchievements;
+        EventService.Instance.OnBulletFired += BulletAchievement;
     }
 
-    private void EnemyKillAchievement()
+    public void BulletAchievement()
     {
-        Debug.LogError("$$ 100 Kills Tank Sniper $$");
+        Debug.LogError("$$ Bullets Noob Medal $$");
     }
+
+    private void EnemyKillAchievements()
+    {
+        Debug.LogError("$$ Tank Novice Medal $$");
+    }
+
 
     private void OnDisable()
     {
-        EventService.Instance.On100EnemyKill -= EnemyKillAchievement;
+        EventService.Instance.OnEnemyKill -= EnemyKillAchievements;
+        EventService.Instance.OnBulletFired -= BulletAchievement;
     }
 }

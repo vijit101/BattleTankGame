@@ -7,12 +7,14 @@ namespace Tanks.Enemy
     public class EnemyBehaviour : MonoBehaviour, IDamagable
     {
 
-        float score;
+        float EnemiesKilled;
         TankState currentState = null;
         float Health = 400, TimeElapsed = 0;
         public float speed = 20;
         public PatrollingState patrollingState;
         public ChasingState chasingState;
+        public ShootingState shootingState;
+        [HideInInspector]
         public Transform Playertarget;
         bool changeToChase = false;
 
@@ -32,29 +34,6 @@ namespace Tanks.Enemy
                 changeToChase = true;
             }    
         }
-        private void Start()
-        {
-            EventService.Instance.EnemyOnDeath += ScoreUpdate;
-        }
-
-        private void UpdateScore(Collider other)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                int lives = PlayerPrefs.GetInt("Lives");
-                if (lives < 1)
-                {
-                    //Game Over
-                    Debug.Log("Player Dead");
-                }
-                else
-                {
-                    lives--;
-                    PlayerPrefs.SetInt("Lives", lives);
-                    PlayerPrefs.SetInt("Respawn", 1);
-                }
-            }
-        }
 
         public void TakeDamage(float Damage)
         {
@@ -62,8 +41,8 @@ namespace Tanks.Enemy
             {
                 //ScoreUpdate(); called via event
                 //Enemy Death state  
-                //EventService.Instance.EnemyOnDeath.Invoke();
-                EventService.Instance.FireOnDeathEvent();  //Here I fire the on death event as the enemy is dead
+                EventService.Instance.FireOnDeathEvent();
+                ScoreUpdate();
                 this.gameObject.SetActive(false);  //return the enemy to the pool
                 EnemyPoolService.Instance.ReturnPooledObject(this);
             }
@@ -75,13 +54,13 @@ namespace Tanks.Enemy
         // no need can be done using kill count as high score
         private void ScoreUpdate()
         {
-            score = PlayerPrefs.GetFloat("Score");
-            score++;
-            PlayerPrefs.SetFloat("Score", score);
+            EnemiesKilled = PlayerPrefs.GetFloat("Score");
+            EnemiesKilled++;
+            PlayerPrefs.SetFloat("Score", EnemiesKilled);
         }
 
        private void Update()
-        {
+       {
             if (currentState == null)
             {
                 TimeElapsed = TimeElapsed + Time.deltaTime;
@@ -99,7 +78,7 @@ namespace Tanks.Enemy
                 changeToChase = false;
             }
 
-        }
+       }
         //State Code
         public void ChangeState(TankState newState)
         {
@@ -116,16 +95,17 @@ namespace Tanks.Enemy
             }
         }
 
-        private void OnDisable()
-        {
-            EventService.Instance.EnemyOnDeath -= ScoreUpdate;
-        }
-        public void ResetTank(Vector3 spawnPos)
+        public void ResetEnemyTank(Vector3 spawnPos)
         {
             transform.position = spawnPos;
             transform.rotation = Quaternion.identity;
             gameObject.SetActive(true);
         }
+        public void AddHealth(int health)
+        {
+            this.Health += health; 
+        }
+
     }
 
 }

@@ -1,29 +1,26 @@
-﻿using System;
-using Tanks.ObjectPool;
+﻿using Tanks.ObjectPool;
 using UnityEngine;
 
 namespace Tanks.Tank
 {
     public class TankService : MonoSingletongeneric<TankService>
     {
-        public TankView tankview; // Holds a reference to the view be instantiated
-        public TankScriptableObjectList tankScriptableObjectList; // list of data to be input to model
-
-        protected override void Awake()
-        {
-            base.Awake();
-        }
+        public TankView tankview; 
+        public TankScriptableObjectList tankScriptableObjectList;
         private void Start()
         {
             PlayerPrefs.SetFloat("Score", 0);
             PlayerPrefs.SetInt("Lives", 3);
             PlayerPrefs.SetInt("Respawn", 0);
         }
-        
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+    
         private void Update()
         {
             SpawnTank(); 
-
         }
 
         private void SpawnTank()
