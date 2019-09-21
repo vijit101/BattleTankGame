@@ -9,12 +9,14 @@ namespace Tanks.Tank
 
         public TankView TankView { get; set; }
         public TankModel TankModel { get; set; }
+        public TankModel DefaultModel { get; set; }
 
         public TankController(TankModel tankModel, TankView tankView)
         {
             //instantiates the tank view prefab passed to it via service 
             TankView = GameObject.Instantiate<TankView>(tankView);
             TankModel = tankModel;
+            DefaultModel = tankModel;
             // Setting the model to view
             TankView.Speed = tankModel.Speed;
             TankView.Health = tankModel.Health;
@@ -40,10 +42,19 @@ namespace Tanks.Tank
         {
             if (TankModel.Health - damage <= 0)
             {
-                // If player dead return it to the pool 
-                TankControllerPoolService.Instance.ReturnPooledObject(this);
-                this.TankView.gameObject.SetActive(false);
-                LevelLoader.LoadAnyLevel(2);
+                int lives = PlayerPrefs.GetInt("Lives");
+                if (lives < 1)
+                {
+                    //Game Over
+                    TankControllerPoolService.Instance.ReturnPooledObject(this);
+                    LevelLoader.LoadAnyLevel(2);
+                }
+                else
+                {
+                    lives--;
+                    PlayerPrefs.SetInt("Lives", lives);
+                    PlayerPrefs.SetInt("Respawn", 1);
+                }
             }
             else
             {

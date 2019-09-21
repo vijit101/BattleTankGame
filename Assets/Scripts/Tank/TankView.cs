@@ -99,6 +99,7 @@ namespace Tanks.Tank
             RespawnPos = RespawnPos.SetRandomVectorXYZ(-38, 38, 0, 5, -38, 38);
             RespawnPos = RespawnPos.SetY(-3.74f);
             gameObject.transform.position = RespawnPos;
+            tankcontroller.SetModel(tankcontroller.DefaultModel);
             gameObject.SetActive(true);
             PlayerPrefs.SetInt("Respawn", 0);
         }
