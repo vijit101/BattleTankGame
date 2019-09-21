@@ -15,8 +15,8 @@ namespace Tanks.Tank
         {
             //instantiates the tank view prefab passed to it via service 
             TankView = GameObject.Instantiate<TankView>(tankView);
-            TankModel = tankModel;
-            DefaultModel = tankModel;
+            TankModel = tankModel; // points to a refrence(address) of tankModel and even if defaultmodel = new tankmodel; default = tank model still points
+            DefaultModel = new TankModel(tankModel.Type,(int)tankModel.Speed,(int)tankModel.Health);
             // Setting the model to view
             TankView.Speed = tankModel.Speed;
             TankView.Health = tankModel.Health;
@@ -39,9 +39,9 @@ namespace Tanks.Tank
 
         // Implementation of idamagable interface throught view calls in apply method
         public void ApplyDamage(float damage)
-        {
+        {          
             if (TankModel.Health - damage <= 0)
-            {
+            { 
                 int lives = PlayerPrefs.GetInt("Lives");
                 if (lives < 1)
                 {
@@ -59,6 +59,8 @@ namespace Tanks.Tank
             else
             {
                 TankModel.Health = TankModel.Health-damage;
+                Debug.LogError("%%%%" + TankModel.Health);
+                Debug.LogError("+++" + DefaultModel.Health);
             }
         }
         // Sets model to view stats

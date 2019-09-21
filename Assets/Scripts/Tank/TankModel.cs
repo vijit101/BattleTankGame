@@ -14,6 +14,7 @@
             Health = health;
             Type = type;
         }
+        public TankModel() { }
 
         public float Speed { get; private set; }
         public float Health { get; set; }

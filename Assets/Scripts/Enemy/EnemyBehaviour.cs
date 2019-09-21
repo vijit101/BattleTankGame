@@ -35,25 +35,6 @@ namespace Tanks.Enemy
             }    
         }
 
-        //private void UpdateScore(Collider other)
-        //{
-        //    if (other.gameObject.tag == "Player")
-        //    {
-        //        int lives = PlayerPrefs.GetInt("Lives");
-        //        if (lives < 1)
-        //        {
-        //            //Game Over
-        //            Debug.Log("Player Dead");
-        //        }
-        //        else
-        //        {
-        //            lives--;
-        //            PlayerPrefs.SetInt("Lives", lives);
-        //            PlayerPrefs.SetInt("Respawn", 1);
-        //        }
-        //    }
-        //}
-
         public void TakeDamage(float Damage)
         {
             if (Health - Damage <= 0)

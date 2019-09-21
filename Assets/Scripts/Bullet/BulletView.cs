@@ -24,7 +24,7 @@ namespace Tanks.Bullet
 
         void Update()
         {
-            transform.Translate(transform.forward *Speed * Time.deltaTime);
+            transform.Translate(Vector3.forward *Speed * Time.deltaTime);
             // return bullet to pool logic
             if (timespan > .6)
             {
