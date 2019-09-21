@@ -4,15 +4,13 @@ namespace Tanks.Bullet
 {
     public class BulletService : MonoSingletongeneric<BulletService>
     {
-        //private BulletControllerPoolService bulletControllerPoolService;
-        private TankType tankType, ViewType;
+        private TankType tankType;
         public BulletScriptableObjectList bulletScriptableObjectList;
         public BulletView bulletView;
 
         protected override void Awake()
         {
             base.Awake();
-            //bulletControllerPoolService = GetComponent<BulletControllerPoolService>();
         }
         
         public BulletController GetBullet(TankType tankType)
@@ -37,12 +35,6 @@ namespace Tanks.Bullet
             }
             return null;
         }
-        //public void SetBulletPosition(Transform Tanktransform)
-        //{
-        //    Vector3 Bulletpos = Tanktransform.position.SetY(.2f);
-        //    transform.position = Bulletpos;
-        //}
-
     }
 }
 

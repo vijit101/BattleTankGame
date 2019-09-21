@@ -6,12 +6,16 @@ namespace Tanks.Tank
 {
     public class TankController
     {
+
+        public TankView TankView { get; set; }
+        public TankModel TankModel { get; set; }
+
         public TankController(TankModel tankModel, TankView tankView)
         {
             //instantiates the tank view prefab passed to it via service 
             TankView = GameObject.Instantiate<TankView>(tankView);
             TankModel = tankModel;
-            // Setting the mdoel to view
+            // Setting the model to view
             TankView.Speed = tankModel.Speed;
             TankView.Health = tankModel.Health;
             TankView.Type = tankModel.Type;
@@ -20,9 +24,6 @@ namespace Tanks.Tank
 
         }
 
-        public TankView TankView { get; set; }
-        public TankModel TankModel { get; set; }
-
         // Takes a bulelt from bullet service and fires a bullet 
         public void FireBullet()
         {
@@ -30,6 +31,8 @@ namespace Tanks.Tank
             Vector3 Bulletpos = TankView.transform.position;
             Bulletpos = Bulletpos.SetY(.2f);
             bulletController.SetPosition(Bulletpos,TankView.transform.rotation);
+            
+           
         }
 
         // Implementation of idamagable interface throught view calls in apply method
@@ -40,6 +43,7 @@ namespace Tanks.Tank
                 // If player dead return it to the pool 
                 TankControllerPoolService.Instance.ReturnPooledObject(this);
                 this.TankView.gameObject.SetActive(false);
+                LevelLoader.LoadAnyLevel(2);
             }
             else
             {
@@ -52,11 +56,8 @@ namespace Tanks.Tank
             tank.Speed = TankModel.Speed;
             tank.Health = TankModel.Health;
         }
-        public void ResetController(TankModel tankmodel)
+        public void SetModel(TankModel tankmodel)
         {
-            TankView.gameObject.SetActive(true);
-            TankView.gameObject.transform.position = new Vector3(0, this.TankView.gameObject.transform.position.y, 0);
-            // For reactivation the health be reset to teh model 
             TankModel = tankmodel;
         }
     }

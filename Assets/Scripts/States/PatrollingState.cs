@@ -25,6 +25,7 @@ namespace Tanks.States
         {
             base.OnEnterState();
             enterState = true;
+            timeelasped = 3;
             moveto = SetPatrolPosition(); // remove this line and al tnks first come to 000 the n go on patrolling
         }
 

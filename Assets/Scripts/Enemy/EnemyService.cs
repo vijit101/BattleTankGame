@@ -8,9 +8,7 @@ namespace Tanks.Enemy
     {
         public List<Vector3> EnemyTankPositions;
         public List<EnemyBehaviour> EnemyTankViews;
-        //public List<GameObject> InstantiatedEnemyTanks;
-        // Start is called before the first frame update
-
+     
         protected override void Awake()
         {
             base.Awake();
@@ -45,9 +43,7 @@ namespace Tanks.Enemy
             enemySpawnPos = enemySpawnPos.SetY(-3.68f);
             EnemyTankPositions.Add(enemySpawnPos);
             EnemyBehaviour enemyTank = EnemyPoolService.Instance.GetComponent<EnemyPoolService>().GetEnemyTank(EnemyTankViews[Random.Range(0, EnemyTankViews.Count)]);
-            enemyTank.ResetTank(enemySpawnPos);
-            //GameObject enemyTank = Instantiate(EnemyTankViews[Random.Range(0, EnemyTankViews.Count)], enemySpawnPos, Quaternion.identity) as GameObject;
-            //InstantiatedEnemyTanks.Add(enemyTank);
+            enemyTank.ResetEnemyTank(enemySpawnPos);
         }
     }
 

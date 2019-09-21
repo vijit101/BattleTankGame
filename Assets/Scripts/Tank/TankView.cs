@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Tanks.interfaces;
-using Tanks.Bullet;
+﻿using Tanks.interfaces;
 using UnityEngine;
 
 namespace Tanks.Tank
@@ -27,6 +23,7 @@ namespace Tanks.Tank
         public float Health = 0;
         public float TotTank = 0;
         private TankController tankcontroller;
+        private int BulletCount = 0;
 
         // Use this for initialization
         void Start()
@@ -34,7 +31,6 @@ namespace Tanks.Tank
             transform.position = transform.position.SetY(-3.74f);
             EventService.Instance.EnemyOnDeath += AddTankHealth; // Sub to event when enemy dies it gets health
             rgbd = GetComponent<Rigidbody>();
-            Debug.Log("Spd " + Speed + "health " + Health +"Type "+Type + "Count"+TotTank);
         }
 
         // Update is called once per frame
@@ -43,6 +39,11 @@ namespace Tanks.Tank
             TankMove();
             CheckRespawn();
             TankFire();
+
+            if (BulletCount > 2)
+            {
+                EventService.Instance.FireOnBulletFired();
+            }
         }
         public void InitializeController(TankController tankController)
         {
@@ -78,6 +79,7 @@ namespace Tanks.Tank
             if (Input.GetKeyDown(KeyCode.F))
             {
                 tankcontroller.FireBullet();
+                BulletCount++;
             }
         }
 
@@ -112,6 +114,16 @@ namespace Tanks.Tank
         {
             EventService.Instance.EnemyOnDeath -= AddTankHealth;
         }
+
+        public void ResetController(TankModel tankmodel)
+        {
+            gameObject.SetActive(true);
+            gameObject.transform.position = new Vector3(0, gameObject.transform.position.y, 0);
+            // For reactivation the health be reset to teh model 
+            tankcontroller.SetModel(tankmodel);
+        }
+
+        
     }
 
 }

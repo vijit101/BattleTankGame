@@ -12,10 +12,9 @@ namespace Tanks.States
             if (Enterstate)
             {
                 enemyBehaviour.transform.position = Vector3.MoveTowards(enemyBehaviour.transform.position, enemyBehaviour.Playertarget.position, (enemyBehaviour.speed-5) * Time.deltaTime);
-                if (timelapse > 3.5f)
+                if (timelapse > 2.2f)
                 {
-                    Debug.LogError("Change Back To Patrolling State");
-                    enemyBehaviour.ChangeState(enemyBehaviour.patrollingState);
+                    enemyBehaviour.ChangeState(enemyBehaviour.shootingState);
                 }
                 else
                 {
@@ -33,6 +32,7 @@ namespace Tanks.States
         {
             base.OnEnterState();
             Debug.LogError("Enter chase State");
+            timelapse = 0;
             Enterstate = true;
         }
         public override void OnExitState()
